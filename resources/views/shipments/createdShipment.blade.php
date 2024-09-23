@@ -4,8 +4,22 @@
 
 @section('content')
 
-<h1>Create SHIPMENT CONTENT</h1>
+<div class="container-md">
+    
+<div class="card text-center">
+  <div class="card-header">
+    <h3>Billing Document</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Tracking #: {{ session('trackingId') }}</h5>
+    <a href="{{ session('trackingUrl') }}" class="btn btn-primary" target="_blank">Reciept</a>
+  </div>
+  <div class="card-footer text-body-secondary">
+    {{ session('serviceTyped') }}
+  </div>
+</div>
 
+</div>
 
 @endsection
 

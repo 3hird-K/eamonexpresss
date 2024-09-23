@@ -18,7 +18,7 @@
                         <div class="card bg-light text-dark shadow">
                             
 
-                        <form action="{{ route('shipPage') }}" method="GET">
+                        <form action="{{ route('shipPage') }}" method="POST">
                         
                             @csrf
 
@@ -30,7 +30,8 @@
                                 <div class="flex-grow-1 text-center">
                                     <!-- Center the service name -->
                                     <h6 class="card-title mb-0">{{ $rateDetail['serviceName'] ?? 'N/A' }}</h6>
-                                    <input type="hidden" name="serviceType" value="{{ $rateDetail['serviceName'] ?? 'N/A' }}">
+                                    <input type="hidden" name="serviceType" value="{{ $rateDetail['serviceType'] ?? 'N/A' }}">
+                                    <input type="hidden" name="totalNetCharge" value="{{ htmlspecialchars(json_decode($rateDetail['ratedShipmentDetails'][0]['totalNetFedExCharge'] ?? 'N/A'), ENT_QUOTES, 'UTF-8') }} ">
                                 </div>
                                 <div class="text-end">
                                     <h5 class="text-success">${{ htmlspecialchars(json_decode($rateDetail['ratedShipmentDetails'][0]['totalNetFedExCharge'] ?? 'N/A'), ENT_QUOTES, 'UTF-8') }} 

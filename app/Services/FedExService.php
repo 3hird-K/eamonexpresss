@@ -173,8 +173,13 @@ class FedExService
         $fromZip,
         $toZip,
         $shipperstateOrProvinceCode,
-        $recipientstateOrProvinceCode
+        $recipientstateOrProvinceCode,
+        $totalNetCharge,
+        $customAmount,
+        $customQty
     ){
+
+        // dd($customAmount, $customQty);
 
         $endpoint = $this->isSandbox
             ? 'https://apis-sandbox.fedex.com/ship/v1/shipments'
@@ -187,70 +192,6 @@ class FedExService
         }
 
        
-        
-        // $bookingData  = [
-        //     "labelResponseOptions" => "URL_ONLY",
-        //     "requestedShipment" => [
-        //         "shipper" => [
-        //             "contact" => [
-        //                 "personName" => $shipperName,
-        //                 "phoneNumber" => $shipperPhone,
-        //                 // "companyName" => "Shipper Company Name",
-        //             ],
-        //             "address" => [
-        //                 "streetLines" => [
-        //                     $shipperStreet
-        //                 ],
-        //                 "city" => $shipperCity,
-        //                 "stateOrProvinceCode" => $shipperstateOrProvinceCode,
-        //                 "postalCode" => $fromZip,
-        //                 "countryCode" => $shipperCountryCode,
-        //             ],
-        //         ],
-        //         "recipients" => [
-        //             [
-        //                 "contact" => [
-        //                     "personName" => $recipientName,
-        //                     "phoneNumber" => $recipientPhone,
-        //                     // "companyName" => "Recipient Company Name",
-        //                 ],
-        //                 "address" => [
-        //                     "streetLines" => [
-        //                         $recipientStreet
-        //                     ],
-        //                     "city" => $recipientCity,
-        //                     "stateOrProvinceCode" => $recipientstateOrProvinceCode,
-        //                     "postalCode" => $toZip,
-        //                     "countryCode" => $recipientCountryCode,
-        //                 ],
-        //             ],
-        //         ],
-        //         "shipDatestamp" => $shipDate,
-        //         "serviceType" => $serviceType,
-        //         "packagingType" => $packagingType,
-        //         "pickupType" => $pickupType,
-        //         "blockInsightVisibility" => false,
-        //         "shippingChargesPayment" => [
-        //             "paymentType" => "SENDER",
-        //         ],
-        //         "labelSpecification" => [
-        //             "imageType" => $imageType,
-        //             "labelStockType" => $labelStockType,
-        //         ],
-        //         "requestedPackageLineItems" => [
-        //             [
-        //                 "weight" => [
-        //                     "value" => $weight,
-        //                     "units" => "LB",
-        //                 ],
-        //             ],
-
-        //         ],
-        //     ],
-        //     "accountNumber" => [
-        //         "value" => $this->accountNumber,
-        //     ],
-        // ];
         
         $bookingData = [
             "labelResponseOptions"=> $labelResponseOptions,
@@ -274,82 +215,79 @@ class FedExService
               "recipients"=> [
                 [
                   "contact"=> [
-                    "personName"=> "John doe",
-                    "phoneNumber"=> "5555551234",
+                    "personName"=> $recipientName,
+                    "phoneNumber"=> $recipientPhone,
                     // "companyName"=> "Recipient Company Name"
                   ],
                   "address"=> [
                     "streetLines"=> [
-                      "RECIPIENT STREET LINE 1",
-                    //   "RECIPIENT STREET LINE 2"
+                      $recipientStreet,
                     ],
-                    "city"=> "Collierville",
-                    "stateOrProvinceCode"=> "ON",
-                    "postalCode"=> "m1m1m1",
-                    "countryCode"=> "CA"
+                    "city"=> $recipientCity,
+                    "stateOrProvinceCode"=> $recipientstateOrProvinceCode,
+                    "postalCode"=> $toZip,
+                    "countryCode"=> $recipientCountryCode
                   ]
                 ]
               ],
-              "shipDatestamp"=> "2024-09-20",
-              "serviceType"=> "FEDEX_INTERNATIONAL_PRIORITY_EXPRESS"  ,
-              "packagingType"=> "FEDEX_SMALL_BOX",
-              "pickupType"=> "USE_SCHEDULED_PICKUP",
+              "shipDatestamp"=> $shipDate,
+              "serviceType"=> $serviceType,
+              "packagingType"=> $packagingType, // tobemodified
+              "pickupType"=> $pickupType,
               "blockInsightVisibility"=> false,
               "shippingChargesPayment"=> [
                 "paymentType"=> "SENDER"
               ],
-              "shipmentSpecialServices"=> [
-                "specialServiceTypes"=> [
-                  "FEDEX_ONE_RATE"
-                ]
-              ],
               "labelSpecification"=> [
-                "imageType"=> "PDF",
-                "labelStockType"=> "PAPER_85X11_TOP_HALF_LABEL"
+                "imageType"=> $imageType,
+                "labelStockType"=> $labelStockType
               ],
-              "requestedPackageLineItems"=> [
-                [
-                  "weight"=> [
-                    "units"=> "LB",
-                    "value"=> 10
-                  ]
-                ]
-              ]
-            ],
-            [
+              "customsClearanceDetail"=> [
                 "dutiesPayment"=> [
-                  [
-                    "paymentType"=> "SENDER"
-                  ]
+                  "paymentType"=> "SENDER"
                 ],
                 "isDocumentOnly"=> true,
                 "commodities"=> [
                   [
                     "description"=> "Commodity description",
                     "countryOfManufacture"=> "US",
-                    "quantity"=> 1,
-                    "quantityUnits"=> "PCS",
+                    "quantity"=> $customQty,
+                    "quantityUnits"=> "PCS", 
                     "unitPrice"=> [
-                      [
-                        "amount"=> 100,
-                        "currency"=> "USD"
-                      ]
+                      "amount"=> $totalNetCharge,
+                      "currency"=> "USD"
                     ],
                     "customsValue"=> [
-                      [
-                        "amount"=> 100,
-                        "currency"=> "USD"
-                      ]
+                      "amount"=> $customAmount,
+                      "currency"=> "USD"
                     ],
                     "weight"=> [
-                      [
-                        "units"=> "LB",
-                        "value"=> 20
-                      ]
+                      "units"=> "LB",
+                      "value"=> $weight
                     ]
                   ]
                 ]
-                      ],
+              ],
+              "shippingDocumentSpecification"=> [
+                "shippingDocumentTypes"=> [
+                  "COMMERCIAL_INVOICE"
+                ],
+                "commercialInvoiceDetail"=> [
+                  "documentFormat"=> [
+                    "stockType"=> "PAPER_LETTER",
+                    "docType"=> "PDF" // fixed to PDF
+                  ]
+                ]
+              ],
+              "requestedPackageLineItems"=> [
+                [
+                  "weight"=> [
+                    "units"=> "LB",
+                    "value"=> 70
+                  ]
+                ]
+              ]
+            ],
             "accountNumber"=> [
               "value"=> "740561073"
             ]
@@ -359,10 +297,7 @@ class FedExService
 
 
 
-
-
-
-
+            
             
             session()->forget('reqErrorResponse');
             try {

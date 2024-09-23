@@ -16,6 +16,7 @@
                 <h4>Shipper & Recipient Information</h4>
                 <small>Fill in the details of the shipper and recipient.</small>
                 <p><span class="fw-bold">{{ $serviceType }}</span></p>
+                <p>Total: <span class="fw-bold">$ {{ $totalNetCharge }}</span></p>
             </div>
             <div class="card-body">
                 <div>
@@ -200,17 +201,32 @@
         <!-- Label Specification -->
         <div class="card mb-4">
             <div class="card-header">
-                <h4>Label Specification</h4>
+                <h4>Tell me more about your goods:</h4>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
+
+            <div class="row">
+                <div class="col-md-6 input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">$</span>
+                    <input type="number" class="form-control" placeholder="Enter your estimated amount" name="customsValueAmount" required>
+                </div>
+                <div class="col-md-6 input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">qty.</span>
+                    <input type="number" placeholder="Item Qty." class="form-control" name="customsValueQuantity" maxlength="50" required>
+                </div>
+            </div>
+
+
+
+                <!-- <div class="row"> -->
+                    <!-- <div class="col-md-6 mb-3">
                         <label for="imageType">Image Type</label>
                         <select class="form-control" id="imageType" name="imageType" required>
                             <option value="PDF">PDF</option>
                             <option value="PNG">PNG</option>
                         </select>
-                    </div>                    <div class="col-md-6 mb-3">
+                    </div>                     -->
+                    <!-- <div class="col-md-6 mb-3">
                         <label for="labelStockType">Label Stock Type</label>
                         <select class="form-control" id="labelStockType" name="labelStockType" required>
                             <option value="PAPER_4X6">PAPER 4x6</option>
@@ -230,25 +246,30 @@
                             <option value="STOCK_4X9">STOCK 4x9</option>
                             <option value="STOCK_4X85_TRAILING_DOC_TAB">STOCK 4x8.5 Trailing Doc Tab</option>
                             <option value="STOCK_4X105_TRAILING_DOC_TAB">STOCK 4x10.5 Trailing Doc Tab</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
+                        </select> -->
+
+                        
+                    <!-- </div> -->
+                    <!-- <div class="col-md-6 mb-3"> -->
                         <!-- <label for="labelResponseOptions">Label Response Options</label>
                         <select class="form-control" id="labelResponseOptions" name="labelResponseOptions" required>
                             <option value="LABEL">Label</option>
                             <option value="URL_ONLY">URL Only</option>
                         </select> -->
-                        <input type="hidden" name="labelResponseOptions" value="URL_ONLY">
                         
-                    </div>
+                        
+                    <!-- </div> -->
+
+                    <input type="hidden" name="labelStockType" value="PAPER_LETTER">
+                    <input type="hidden" name="imageType" value="PDF">
+                    <input type="hidden" name="labelResponseOptions" value="URL_ONLY">
                 </div>
             </div>
-        </div>
-
-        <!-- Submit Button -->
-        <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary btn-lg">Submit Shipment Request</button>
         </div>
+        </div>
+        
     </form>
 </div>
 @endsection
