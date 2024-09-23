@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuoteController;
+
+
+
+
+Route::get('/zipcode', function () {
+    return view('sample');
+});
+Route::get('/', function () {
+    return view('mainpage.home');
+});
+
+Route::get('about', function () {
+    return view('AboutUs.about');
+});
+
+Route::get('/', [QuoteController::class, 'countryDb'])->name('retrieveShipments');
+Route::get('/getToken', [QuoteController::class, 'getToken'])->name('hello');
+Route::get('/getQuote', [QuoteController::class, 'getQuote'])->name('retrieveShipments');
+Route::get('/Shipment', [QuoteController::class, 'shipPage'])->name(name: 'shipPage');
+Route::post('/createShipment', [QuoteController::class, 'createdShipment'])->name('createdShipment');
+
+
+// 

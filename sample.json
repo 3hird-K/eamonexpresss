@@ -1,0 +1,311 @@
+{
+    "labelResponseOptions": "URL_ONLY",
+    "requestedShipment": {
+      "shipper": {
+        "contact": {
+          "personName": "SHIPPER NAME",
+          "phoneNumber": "1234567890",
+          "companyName": "Shipper Company Name"
+        },
+        "address": {
+          "streetLines": [
+            "SHIPPER STREET LINE 1"
+          ],
+          "city": "HARRISON",
+          "stateOrProvinceCode": "AR",
+          "postalCode": "72601",
+          "countryCode": "US"
+        }
+      },
+      "recipients": [
+        {
+          "contact": {
+            "personName": "RECIPIENT NAME",
+            "phoneNumber": "1234567890",
+            "companyName": "Recipient Company Name"
+          },
+          "address": {
+            "streetLines": [
+              "RECIPIENT STREET LINE 1",
+              "RECIPIENT STREET LINE 2"
+            ],
+            "city": "Collierville",
+            "stateOrProvinceCode": "TN",
+            "postalCode": "38017",
+            "countryCode": "US"
+          }
+        }
+      ],
+      "shipDatestamp": "2024-09-20",
+      "serviceType": "STANDARD_OVERNIGHT",
+      "packagingType": "FEDEX_SMALL_BOX",
+      "pickupType": "USE_SCHEDULED_PICKUP",
+      "blockInsightVisibility": false,
+      "shippingChargesPayment": {
+        "paymentType": "SENDER"
+      },
+      "shipmentSpecialServices": {
+        "specialServiceTypes": [
+          "FEDEX_ONE_RATE"
+        ]
+      },
+      "labelSpecification": {
+        "imageType": "PDF",
+        "labelStockType": "PAPER_85X11_TOP_HALF_LABEL"
+      },
+      "requestedPackageLineItems": [
+        {
+          "weight": {
+            "units": "LB",
+            "value": 10
+          }
+        }
+      ]
+    },
+    "accountNumber": {
+      "value": "740561073"
+    }
+  }
+  
+
+
+
+
+
+{
+    "transactionId": "APIF_SV_SHPC_TxID09b98fa5-67ea-41ca-a5d7-31fbe44e0df0",
+    "output": {
+        "transactionShipments": [
+            {
+                "alerts": [
+                    {
+                        "code": "VIRTUAL.RESPONSE",
+                        "message": "This is a Virtual Response.",
+                        "alertType": "NOTE"
+                    }
+                ],
+                "masterTrackingNumber": "794971969821",
+                "serviceType": "STANDARD_OVERNIGHT",
+                "shipDatestamp": "2020-12-30",
+                "serviceName": "FedEx Standard Overnight®",
+                "pieceResponses": [
+                    {
+                        "masterTrackingNumber": "794971969821",
+                        "deliveryDatestamp": "2020-12-31",
+                        "trackingNumber": "794971969821",
+                        "additionalChargesDiscount": 0,
+                        "netRateAmount": 0,
+                        "netChargeAmount": 0,
+                        "netDiscountAmount": 0,
+                        "packageDocuments": [
+                            {
+                                "url": "https://wwwtest.fedex.com/document/v1/cache/retrieve/SH,4844c4e1cd1bcfcb794971969821_SHIPPING_P?isLabel=true&autoPrint=false",
+                                "contentType": "LABEL",
+                                "copiesToPrint": 1,
+                                "docType": "PDF"
+                            }
+                        ],
+                        "currency": "USD",
+                        "customerReferences": [],
+                        "codcollectionAmount": 0,
+                        "baseRateAmount": 87.1
+                    }
+                ],
+                "shipmentAdvisoryDetails": {},
+                "completedShipmentDetail": {
+                    "usDomestic": true,
+                    "carrierCode": "FDXE",
+                    "masterTrackingId": {
+                        "trackingIdType": "FEDEX",
+                        "formId": "0201",
+                        "trackingNumber": "794971969821"
+                    },
+                    "serviceDescription": {
+                        "serviceId": "EP1000000005",
+                        "serviceType": "STANDARD_OVERNIGHT",
+                        "code": "05",
+                        "names": [
+                            {
+                                "type": "long",
+                                "encoding": "utf-8",
+                                "value": "FedEx Standard Overnight®"
+                            },
+                            {
+                                "type": "long",
+                                "encoding": "ascii",
+                                "value": "FedEx Standard Overnight"
+                            },
+                            {
+                                "type": "medium",
+                                "encoding": "utf-8",
+                                "value": "FedEx Standard Overnight®"
+                            },
+                            {
+                                "type": "medium",
+                                "encoding": "ascii",
+                                "value": "FedEx Standard Overnight"
+                            },
+                            {
+                                "type": "short",
+                                "encoding": "utf-8",
+                                "value": "SOS"
+                            },
+                            {
+                                "type": "short",
+                                "encoding": "ascii",
+                                "value": "SOS"
+                            },
+                            {
+                                "type": "abbrv",
+                                "encoding": "ascii",
+                                "value": "SO"
+                            }
+                        ],
+                        "operatingOrgCodes": ["FXE"],
+                        "serviceCategory": "parcel",
+                        "description": "Standard Overnight",
+                        "astraDescription": "STD OVR"
+                    },
+                    "packagingDescription": "FedEx Small Box",
+                    "operationalDetail": {
+                        "ursaPrefixCode": "XH",
+                        "ursaSuffixCode": "GRBA ",
+                        "originLocationId": "COSA ",
+                        "originLocationNumber": 0,
+                        "originServiceArea": "A1",
+                        "destinationLocationId": "GRBA ",
+                        "destinationLocationNumber": 0,
+                        "destinationServiceArea": "A2",
+                        "destinationLocationStateOrProvinceCode": "WI",
+                        "deliveryDate": "2020-12-31",
+                        "deliveryDay": "FRI",
+                        "commitDate": "2020-12-31",
+                        "commitDay": "FRI",
+                        "ineligibleForMoneyBackGuarantee": false,
+                        "astraPlannedServiceLevel": "FRI - 11 AUG 5:00P",
+                        "astraDescription": "STANDARD OVERNIGHT",
+                        "postalCode": "38017",
+                        "stateOrProvinceCode": "WI",
+                        "countryCode": "US",
+                        "airportId": "ATW",
+                        "serviceCode": "05",
+                        "packagingCode": "13",
+                        "publishedDeliveryTime": "5:00P",
+                        "scac": ""
+                    },
+                    "shipmentRating": {
+                        "actualRateType": "PAYOR_ACCOUNT_PACKAGE",
+                        "shipmentRateDetails": [
+                            {
+                                "rateType": "PAYOR_ACCOUNT_PACKAGE",
+                                "rateScale": "105173",
+                                "rateZone": "05",
+                                "pricingCode": "PACKAGE",
+                                "ratedWeightMethod": "DEFAULT_WEIGHT_APPLIED",
+                                "dimDivisor": 0,
+                                "fuelSurchargePercent": 0,
+                                "totalBaseCharge": 87.1,
+                                "totalFreightDiscounts": 0,
+                                "totalNetFreight": 87.1,
+                                "totalSurcharges": 0,
+                                "totalNetFedExCharge": 87.1,
+                                "totalTaxes": 0,
+                                "totalNetCharge": 87.1,
+                                "totalRebates": 0,
+                                "totalDutiesAndTaxes": 0,
+                                "totalAncillaryFeesAndTaxes": 0,
+                                "totalDutiesTaxesAndFees": 0,
+                                "totalNetChargeWithDutiesAndTaxes": 0,
+                                "surcharges": [],
+                                "freightDiscounts": [],
+                                "taxes": [],
+                                "currency": "USD"
+                            }
+                        ]
+                    },
+                    "completedPackageDetails": [
+                        {
+                            "sequenceNumber": 1,
+                            "trackingIds": [
+                                {
+                                    "trackingIdType": "FEDEX",
+                                    "formId": "0201",
+                                    "trackingNumber": "794971969821"
+                                }
+                            ],
+                            "groupNumber": 0,
+                            "packageRating": {
+                                "actualRateType": "PAYOR_ACCOUNT_PACKAGE",
+                                "effectiveNetDiscount": 0,
+                                "packageRateDetails": [
+                                    {
+                                        "rateType": "PAYOR_ACCOUNT_PACKAGE",
+                                        "ratedWeightMethod": "DEFAULT_WEIGHT_APPLIED",
+                                        "minimumChargeType": "",
+                                        "baseCharge": 87.1,
+                                        "totalFreightDiscounts": 0,
+                                        "netFreight": 87.1,
+                                        "totalSurcharges": 0,
+                                        "netFedExCharge": 87.1,
+                                        "totalTaxes": 0,
+                                        "netCharge": 87.1,
+                                        "totalRebates": 0,
+                                        "surcharges": [],
+                                        "currency": "USD"
+                                    }
+                                ]
+                            },
+                            "signatureOption": "SERVICE_DEFAULT",
+                            "operationalDetail": {
+                                "barcodes": {
+                                    "binaryBarcodes": [
+                                        {
+                                            "type": "COMMON_2D",
+                                            "value": "Wyk+HjAxHTAyNTQzMTMdODQwHTA1HTc5NDk3MTk2OTgyMTAyMDEdRkRFHTc0MDU2MTA3Mx0yMjIdHTEvMR0wLjAwS0cdTh1GYXRpaCBSRUNJUElFTlQgU1RSRUVUIExJTkUgMR1HcmVlbiBCYXkdV0kdRmF0aWggcmVjaXBpZW50cyBwZXJzb25OYW1lHjA2HTEwWkVEMDA4HTExWkZhdGloIFJlY2lwaWVudCBDb21wYW55IE5hbWUdMTJaMTIzNDU2Nzg5MR0xNFpGYXRpaCBSRUNJUElFTlQgU1RSRUVUIExJTkUgMh0xNVoxMTQwNjQ4NjAdMjBaHB0zMVoxMDI3NjAxOTcxNTEwMDA1NDMxMzAwNzk0OTcxOTY5ODIxHTMyWjAyHTMzWkZSHTM0WjEzHTM5WkNPU0EdHjA5HUZEWB16HTgdPCYCOD5hf2AeBA=="
+                                        }
+                                    ],
+                                    "stringBarcodes": [
+                                        {
+                                            "type": "FEDEX_1D",
+                                            "value": "1027601971510005431300794971969821"
+                                        }
+                                    ]
+                                },
+                                "astraHandlingText": "",
+                                "operationalInstructions": [
+                                    { "number": 2, "content": "TRK#" },
+                                    { "number": 3, "content": "0201" },
+                                    { "number": 5, "content": "XH GRBA " },
+                                    {
+                                        "number": 7,
+                                        "content": "1027601971510005431300794971969821"
+                                    },
+                                    {
+                                        "number": 8,
+                                        "content": "583J4/C628/9AE3"
+                                    },
+                                    {
+                                        "number": 10,
+                                        "content": "7949 7196 9821"
+                                    },
+                                    {
+                                        "number": 12,
+                                        "content": "FRI - 11 AUG 5:00P"
+                                    },
+                                    {
+                                        "number": 13,
+                                        "content": "STANDARD OVERNIGHT"
+                                    },
+                                    { "number": 15, "content": "38017" },
+                                    { "number": 16, "content": "WI-US" },
+                                    { "number": 17, "content": "ATW" }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "serviceCategory": "EXPRESS"
+            }
+        ]
+    }
+}

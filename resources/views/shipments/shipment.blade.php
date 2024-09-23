@@ -1,0 +1,254 @@
+@extends('layouts.layout')
+@section('title', 'FedEx Shipping')
+@section('css_content', 'css/style.css')
+
+@section('content')
+<div class="container-xl mt-5 p-4 my-5 rounded">
+    <h2 class="text-center">FedEx Shipping Calculator</h2>
+    <form action="{{ route('createdShipment')}}" method="POST">
+        @csrf
+
+    
+     
+        <!-- Shipper and Recipient Info Section -->
+        <div class="card my-4">
+            <div class="card-header">
+                <h4>Shipper & Recipient Information</h4>
+                <small>Fill in the details of the shipper and recipient.</small>
+                <p><span class="fw-bold">{{ $serviceType }}</span></p>
+            </div>
+            <div class="card-body">
+                <div>
+                <h5 class="text-primary">Shipper Information</h5>
+                <input type="text" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold mb-3" disabled> 
+                <input type="hidden" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold"> 
+                </div>
+                <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="shipperName">Shipper Name</label>
+                    <input type="text" class="form-control" id="shipperName" name="shipperName" placeholder="Enter shipper name" value="{{ old('shipperName') }}" required>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                        <label for="shipperPhone">Phone Number</label>
+                        <input type="number" class="form-control" id="shipperPhone" name="shipperPhone" placeholder="(212) 555-1234" value="{{ old('shipperPhone') }}" minlength="10" maxlength="15"  required>
+
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                @if ($error == "Phone Number is wrong!")
+                                    <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
+                                        <p>{{ $error }}</p>
+                                     </div>
+                                
+                            @endif
+                            @endforeach
+                         @endif
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="shipperStreet">Street Line</label>
+                        <input type="text" class="form-control" id="shipperStreet" name="shipperStreet" placeholder="789 Oak Ave" value="{{ old('shipperStreet') }}"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="shipperCity">Province/State Code</label>
+                        <input type="text" class="form-control" id="stateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" maxlength="2" required>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    @if ($error == "Province Code is wrong!")
+                                        <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
+                                            <p>{{ $error }}</p>
+                                        </div>
+                                    
+                                @endif
+                                @endforeach
+                            @endif
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="shipperCity">City</label>
+                        <input type="text" class="form-control" id="shipperCity" name="shipperCity" placeholder="Green Valley" maxlength="35" value="{{ old('shipperCity') }}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="shipperCity">Postal Code</label>
+                        <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeFrom') }}" disabled>
+                    </div>
+                    
+                </div>
+
+                <h5 class="text-primary mt-4">Recipient Information</h5> 
+                <input type="text" name="recipientCountryCode" value="{{ $toCountry }}" class="form-control fw-bold mb-3" disabled> 
+                <input type="hidden" name="recipientCountryCode" value="{{ $toCountry }}" class="form-control fw-bold"> 
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="recipientName">Recipient Name</label>
+                        <input type="text" class="form-control" id="recipientName" name="recipientName" placeholder="Enter recipient name" value="{{ old('recipientName') }}"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="recipientPhone">Phone Number</label>
+                        <input type="number" class="form-control" id="recipientPhone" name="recipientPhone" placeholder="(604) 555-7890" minlength="10" maxlength="15" value="{{ old('recipientPhone') }}"  required>
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                @if ($error == "Phone Number is wrong!")
+                                    <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
+                                        <p>{{ $error }}</p>
+                                    </div>
+                                
+                            @endif
+                            @endforeach
+                         @endif
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="recipientStreet">Street Line </label>
+                        <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="123 Maple St" value="{{ old('recipientStreet') }}"  required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="recipientstateOrProvinceCode">Province/State Code</label>
+                        <input type="text" class="form-control" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" maxlength="2" required value="{{ old('recipientstateOrProvinceCode') }}">
+                        @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    @if ($error == "Recipient Province Code is wrong!")
+                                        <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
+                                            <p>{{ $error }}</p>
+                                        </div>
+                                    
+                                @endif
+                                @endforeach
+                            @endif
+                    
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="recipientCity">City</label>
+                        <input type="text" class="form-control" id="recipientCity" name="recipientCity" placeholder="Toronto" maxlength="35" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="shipperCity">Postal Code</label>
+                        <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeTo') }}" disabled>
+                    </div>
+                </div>
+            </div>
+            <!-- @if ($errors->any())
+                <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                            @if ($error == "Phone Number too Long!")
+                                
+                            @endif
+                        @endforeach
+                </div>
+            @endif -->
+        </div>
+
+        <!-- Shipment Details -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Shipment Details</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Ship Date Dropdown -->
+                    <div class="col-md-6 mb-3">
+                        <label for="shipDate">Ship Date</label>
+                        <select class="form-control" id="shipDate" name="shipDate" required>
+                            @for ($i = 0; $i <= 8; $i++)
+                                <option value="{{ now()->addDays($i)->format('Y-m-d') }}">
+                                    {{ now()->addDays($i)->format('Y-m-d') }}
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
+
+                    <!-- Packaging Type -->
+                    <div class="col-md-6 mb-3">
+                        <label for="packagingType">Packaging Type</label>
+                        <select class="form-control" id="packagingType" name="packagingType" required>
+                            <option value="YOUR_PACKAGING">Customer Packaging - 150 lbs/68 KG (Express)</option>
+                            <option value="YOUR_PACKAGING">Customer Packaging - 70 lbs/32 KG (Ground)</option>
+                            <option value="YOUR_PACKAGING">Customer Packaging - 70 lbs/32 KG (Economy)</option>
+                            <option value="FEDEX_ENVELOPE">FedEx Envelope - 1 lbs/0.5 KG</option>
+                            <option value="FEDEX_BOX">FedEx Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_SMALL_BOX">FedEx Small Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_MEDIUM_BOX">FedEx Medium Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_LARGE_BOX">FedEx Large Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_EXTRA_LARGE_BOX">FedEx Extra Large Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_10KG_BOX">FedEx 10kg Box - 22 lbs/10 KG</option>
+                            <option value="FEDEX_25KG_BOX">FedEx 25kg Box - 55 lbs/25 KG</option>
+                            <option value="FEDEX_PAK">FedEx Pak - 20 lbs/9 KG</option>
+                            <option value="FEDEX_TUBE">FedEx Tube - 20 lbs/9 KG</option>
+                        </select>
+                    </div>
+
+                    <!-- Pickup Type -->
+                    <div class="col-md-6 mb-3">
+                        <label for="pickupType">Pickup Type</label>
+                        <select class="form-control" id="pickupType" name="pickupType" required>
+                            <option value="USE_SCHEDULED_PICKUP">Use Scheduled Pickup</option>
+                            <option value="CONTACT_FEDEX_TO_SCHEDULE">Contact FedEx to Schedule</option>
+                            <option value="DROPOFF_AT_FEDEX_LOCATION">Dropoff at FedEx Location</option>
+                        </select>
+                    </div>
+
+                    <!-- Special Service Type -->
+                    <!-- <div class="col-md-6 mb-3">
+                        <label for="specialServiceType">Special Service Types</label>
+                        <select class="form-control" id="specialServiceType" name="specialServiceType">
+                            <option value="FEDEX_ONE_RATE">FedEx One Rate</option>
+                        </select>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Label Specification -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Label Specification</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="imageType">Image Type</label>
+                        <select class="form-control" id="imageType" name="imageType" required>
+                            <option value="PDF">PDF</option>
+                            <option value="PNG">PNG</option>
+                        </select>
+                    </div>                    <div class="col-md-6 mb-3">
+                        <label for="labelStockType">Label Stock Type</label>
+                        <select class="form-control" id="labelStockType" name="labelStockType" required>
+                            <option value="PAPER_4X6">PAPER 4x6</option>
+                            <option value="PAPER_4X675">PAPER 4x6.75</option>
+                            <option value="PAPER_4X8">PAPER 4x8</option>
+                            <option value="PAPER_4X9">PAPER 4x9</option>
+                            <option value="PAPER_7X475">PAPER 7x4.75</option>
+                            <option value="PAPER_85X11_BOTTOM_HALF_LABEL">PAPER 8.5x11 Bottom Half Label</option>
+                            <option value="PAPER_85X11_TOP_HALF_LABEL">PAPER 8.5x11 Top Half Label</option>
+                            <option value="PAPER_LETTER">PAPER LETTER</option>
+                            <option value="STOCK_4X675_LEADING_DOC_TAB">STOCK 4x6.75 Leading Doc Tab</option>
+                            <option value="STOCK_4X8">STOCK 4x8</option>
+                            <option value="STOCK_4X9_LEADING_DOC_TAB">STOCK 4x9 Leading Doc Tab</option>
+                            <option value="STOCK_4X6">STOCK 4x6</option>
+                            <option value="STOCK_4X675_TRAILING_DOC_TAB">STOCK 4x6.75 Trailing Doc Tab</option>
+                            <option value="STOCK_4X9_TRAILING_DOC_TAB">STOCK 4x9 Trailing Doc Tab</option>
+                            <option value="STOCK_4X9">STOCK 4x9</option>
+                            <option value="STOCK_4X85_TRAILING_DOC_TAB">STOCK 4x8.5 Trailing Doc Tab</option>
+                            <option value="STOCK_4X105_TRAILING_DOC_TAB">STOCK 4x10.5 Trailing Doc Tab</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <!-- <label for="labelResponseOptions">Label Response Options</label>
+                        <select class="form-control" id="labelResponseOptions" name="labelResponseOptions" required>
+                            <option value="LABEL">Label</option>
+                            <option value="URL_ONLY">URL Only</option>
+                        </select> -->
+                        <input type="hidden" name="labelResponseOptions" value="URL_ONLY">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary btn-lg">Submit Shipment Request</button>
+        </div>
+    </form>
+</div>
+@endsection
