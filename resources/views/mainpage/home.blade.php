@@ -2,6 +2,7 @@
 @section('title', 'Eamon Express | Home')
 @section('css_content', 'css/style.css')
 
+
 @section('content')
 
 <Section class="banner-area">
@@ -34,8 +35,8 @@
                     @csrf
                     <div class="fields">
                         <div class="contain-icons">
-                            <img src="img/from.svg" alt="" class="src">
-                            <span>from:</span>
+                            <img src="img/from.svg" alt="From Icon" class="src">
+                            <span>From:</span>
                         </div>
                         <select name="fromCountry" class="form-select" id="from_country">
                             @foreach ($countries as $country)
@@ -45,12 +46,14 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="fields zip">
-                        <input type="text" name="zipcodeFrom" class="form-control" placeholder="ZIP Code" required>
+                        <input type="text" name="zipcodeFrom" class="form-control" placeholder="ZIP Code" id="zipcodeFrom" required>
                     </div>
+
                     <div class="fields">
                         <div class="contain-icons">
-                            <img src="img/To.svg" alt="" class="src">
+                            <img src="img/to.svg" alt="To Icon" class="src">
                             <span>To:</span>
                         </div>
                         <select name="toCountry" class="form-select" id="to_country">
@@ -63,21 +66,34 @@
                     </div>
 
                     <div class="fields zip">
-                        <input type="text" name="zipcodeTo" class="form-control" placeholder="ZIP Code" required>
+                        <input type="text" name="zipcodeTo" class="form-control" placeholder="ZIP Code" id="zipcodeTo" required>
                     </div>
 
                     <div class="fields">
                         <div class="contain-icons">
-                            <img src="img/Parcel-weight.svg" alt="" class="src">
+                            <img src="img/parcel-weight.svg" alt="Parcel Weight Icon" class="src">
                             <span>Parcel Weight:</span>
                         </div>
-                        <input type="number" class="form-control" name="weight" maxlength="150" required>
+                        <input type="number" class="form-control" name="weight" step="0.01" required>
                         <div class="contain-perm contain-icons">
                             <span>LBS</span>
                         </div>
                     </div>
-                    <button type="submit">Get quote</button>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary" id="submit-btn">Get Quote</button>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="error-message">
+                                <p class="alert alert-danger text-center" style="display: none;"></p>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -150,5 +166,54 @@
     </div>
 </Section>
 
+
+
+<script>
+    document.getElementById('calc-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission until validation is done
+        let fromCountry = document.getElementById('from_country').value;
+        let toCountry = document.getElementById('to_country').value;
+        let zipcodeFrom = document.querySelector('input[name="zipcodeFrom"]');
+        let zipcodeTo = document.querySelector('input[name="zipcodeTo"]');
+        let errorMessage = document.querySelector('#error-message p');
+
+        // Postal code validation patterns
+        const postalCodePatterns = {
+            'US': /^[0-9]{5}(?:-[0-9]{4})?$/,  // US ZIP code format (5 digits or ZIP+4)
+            'CA': /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/,  // Canadian postal code format
+            // Add more country patterns here if necessary
+        };
+
+        // Clear error message
+        errorMessage.style.display = 'none';
+
+        // Validate "From" postal code
+        if (postalCodePatterns[fromCountry] && !postalCodePatterns[fromCountry].test(zipcodeFrom.value)) {
+            errorMessage.textContent = `Invalid ZIP/Postal Code format country (${fromCountry}).`;
+            errorMessage.style.display = 'block';
+            zipcodeFrom.value = ''; // Clear input
+            zipcodeFrom.focus(); // Set focus on the input field
+            return;
+        }
+
+        // Validate "To" postal code
+        if (postalCodePatterns[toCountry] && !postalCodePatterns[toCountry].test(zipcodeTo.value)) {
+            errorMessage.textContent = `Invalid ZIP/Postal Code format country (${toCountry}).`;
+            errorMessage.style.display = 'block';
+            zipcodeTo.value = ''; // Clear input
+            zipcodeTo.focus(); // Set focus on the input field
+            return;
+        }
+
+
+
+        // If validation passes, hide the error message and submit the form
+        errorMessage.style.display = 'none';
+        this.submit();
+    });
+</script>
+
+
 @endsection
+
 @section('js_content', 'js/register_animate.js')

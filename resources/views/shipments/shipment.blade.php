@@ -8,8 +8,8 @@
     <form action="{{ route('createdShipment')}}" method="POST">
         @csrf
 
-    
-     
+
+
         <!-- Shipper and Recipient Info Section -->
         <div class="card my-4">
             <div class="card-header">
@@ -21,29 +21,31 @@
             <div class="card-body">
                 <div>
                 <h5 class="text-primary">Shipper Information</h5>
-                <input type="text" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold mb-3" disabled> 
-                <input type="hidden" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold"> 
+                <input type="text" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold mb-3" disabled>
+                <input type="hidden" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold">
                 </div>
                 <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="shipperName">Shipper Name</label>
                     <input type="text" class="form-control" id="shipperName" name="shipperName" placeholder="Enter shipper name" value="{{ old('shipperName') }}" required>
                 </div>
-                
-                <div class="col-md-6 mb-3">
-                        <label for="shipperPhone">Phone Number</label>
-                        <input type="number" class="form-control" id="shipperPhone" name="shipperPhone" placeholder="(212) 555-1234" value="{{ old('shipperPhone') }}" minlength="10" maxlength="15"  required>
 
-                        @if ($errors->any())
+                <div class="col-md-6 mb-3">
+                    <label for="shipperPhone">The shipper's phone number.</label>
+                    <input type="tel" class="form-control" id="shipperPhone" name="shipperPhone" placeholder="(604) 555-7890" minlength="10" maxlength="15" required>
+                    <div class="error-message" id="phone-error" style="display: none; color: red;"></div>
+                        {{-- <label for="shipperPhone">Phone Numbers</label>
+                        <input type="tel" class="form-control" id="shipperPhone" name="shipperPhone" placeholder="(604) 555-7890" minlength="10" maxlength="15" value="{{ old('shipperPhone') }}" required> --}}
+                        {{-- @if ($errors->any())
                             @foreach ($errors->all() as $error)
                                 @if ($error == "Phone Number is wrong!")
                                     <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
                                         <p>{{ $error }}</p>
                                      </div>
-                                
+
                             @endif
                             @endforeach
-                         @endif
+                         @endif --}}
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperStreet">Street Line</label>
@@ -51,14 +53,14 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperCity">Province/State Code</label>
-                        <input type="text" class="form-control" id="stateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" maxlength="2" required>
+                        <input type="text" class="form-control text-uppercase" id="stateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" maxlength="2" required>
                             @if ($errors->any())
                                 @foreach ($errors->all() as $error)
                                     @if ($error == "Province Code is wrong!")
                                         <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
                                             <p>{{ $error }}</p>
                                         </div>
-                                    
+
                                 @endif
                                 @endforeach
                             @endif
@@ -71,12 +73,12 @@
                         <label for="shipperCity">Postal Code</label>
                         <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeFrom') }}" disabled>
                     </div>
-                    
+
                 </div>
 
-                <h5 class="text-primary mt-4">Recipient Information</h5> 
-                <input type="text" name="recipientCountryCode" value="{{ $toCountry }}" class="form-control fw-bold mb-3" disabled> 
-                <input type="hidden" name="recipientCountryCode" value="{{ $toCountry }}" class="form-control fw-bold"> 
+                <h5 class="text-primary mt-4">Recipient Information</h5>
+                <input type="text" name="recipientCountryCode" value="{{ $toCountry }}" class="form-control fw-bold mb-3" disabled>
+                <input type="hidden" name="recipientCountryCode" value="{{ $toCountry }}" class="form-control fw-bold">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="recipientName">Recipient Name</label>
@@ -84,14 +86,15 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="recipientPhone">Phone Number</label>
-                        <input type="number" class="form-control" id="recipientPhone" name="recipientPhone" placeholder="(604) 555-7890" minlength="10" maxlength="15" value="{{ old('recipientPhone') }}"  required>
+                        <input type="tel" class="form-control" id="recipientPhone" name="recipientPhone" placeholder="(604) 555-7890" minlength="10" maxlength="15" value="{{ old('recipientPhone') }}" required>
+
                         @if ($errors->any())
                             @foreach ($errors->all() as $error)
                                 @if ($error == "Phone Number is wrong!")
                                     <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
                                         <p>{{ $error }}</p>
                                     </div>
-                                
+
                             @endif
                             @endforeach
                          @endif
@@ -103,18 +106,18 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="recipientstateOrProvinceCode">Province/State Code</label>
-                        <input type="text" class="form-control" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" maxlength="2" required value="{{ old('recipientstateOrProvinceCode') }}">
+                        <input type="text" class="form-control text-uppercase" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" maxlength="2" required value="{{ old('recipientstateOrProvinceCode') }}">
                         @if ($errors->any())
                                 @foreach ($errors->all() as $error)
                                     @if ($error == "Recipient Province Code is wrong!")
                                         <div class="container-md alert alert-danger d-flex justify-content-center align-content-center text-center">
                                             <p>{{ $error }}</p>
                                         </div>
-                                    
+
                                 @endif
                                 @endforeach
                             @endif
-                    
+
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="recipientCity">City</label>
@@ -131,7 +134,7 @@
                         @foreach ($errors->all() as $error)
                             <p>{{ $error }}</p>
                             @if ($error == "Phone Number too Long!")
-                                
+
                             @endif
                         @endforeach
                 </div>
@@ -158,24 +161,27 @@
                     </div>
 
                     <!-- Packaging Type -->
+
                     <div class="col-md-6 mb-3">
+                        <input type="hidden" id="weightInput" value="{{ session('weight') }}">
                         <label for="packagingType">Packaging Type</label>
                         <select class="form-control" id="packagingType" name="packagingType" required>
                             <option value="YOUR_PACKAGING">Customer Packaging - 150 lbs/68 KG (Express)</option>
                             <option value="YOUR_PACKAGING">Customer Packaging - 70 lbs/32 KG (Ground)</option>
                             <option value="YOUR_PACKAGING">Customer Packaging - 70 lbs/32 KG (Economy)</option>
-                            <option value="FEDEX_ENVELOPE">FedEx Envelope - 1 lbs/0.5 KG</option>
-                            <option value="FEDEX_BOX">FedEx Box - 20 lbs/9 KG</option>
-                            <option value="FEDEX_SMALL_BOX">FedEx Small Box - 20 lbs/9 KG</option>
-                            <option value="FEDEX_MEDIUM_BOX">FedEx Medium Box - 20 lbs/9 KG</option>
-                            <option value="FEDEX_LARGE_BOX">FedEx Large Box - 20 lbs/9 KG</option>
-                            <option value="FEDEX_EXTRA_LARGE_BOX">FedEx Extra Large Box - 20 lbs/9 KG</option>
-                            <option value="FEDEX_10KG_BOX">FedEx 10kg Box - 22 lbs/10 KG</option>
-                            <option value="FEDEX_25KG_BOX">FedEx 25kg Box - 55 lbs/25 KG</option>
-                            <option value="FEDEX_PAK">FedEx Pak - 20 lbs/9 KG</option>
-                            <option value="FEDEX_TUBE">FedEx Tube - 20 lbs/9 KG</option>
+                            <option value="FEDEX_ENVELOPE" data-weight="1">FedEx Envelope - 1 lbs/0.5 KG</option>
+                            <option value="FEDEX_BOX" data-weight="20">FedEx Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_SMALL_BOX" data-weight="20">FedEx Small Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_MEDIUM_BOX" data-weight="20">FedEx Medium Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_LARGE_BOX" data-weight="20">FedEx Large Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_EXTRA_LARGE_BOX" data-weight="20">FedEx Extra Large Box - 20 lbs/9 KG</option>
+                            <option value="FEDEX_10KG_BOX" data-weight="22">FedEx 10kg Box - 22 lbs/10 KG</option>
+                            <option value="FEDEX_25KG_BOX" data-weight="55">FedEx 25kg Box - 55 lbs/25 KG</option>
+                            <option value="FEDEX_PAK" data-weight="20">FedEx Pak - 20 lbs/9 KG</option>
+                            <option value="FEDEX_TUBE" data-weight="20">FedEx Tube - 20 lbs/9 KG</option>
                         </select>
                     </div>
+
 
                     <!-- Pickup Type -->
                     <div class="col-md-6 mb-3">
@@ -248,7 +254,7 @@
                             <option value="STOCK_4X105_TRAILING_DOC_TAB">STOCK 4x10.5 Trailing Doc Tab</option>
                         </select> -->
 
-                        
+
                     <!-- </div> -->
                     <!-- <div class="col-md-6 mb-3"> -->
                         <!-- <label for="labelResponseOptions">Label Response Options</label>
@@ -256,8 +262,8 @@
                             <option value="LABEL">Label</option>
                             <option value="URL_ONLY">URL Only</option>
                         </select> -->
-                        
-                        
+
+
                     <!-- </div> -->
 
                     <input type="hidden" name="labelStockType" value="PAPER_LETTER">
@@ -269,7 +275,56 @@
             <button type="submit" class="btn btn-primary btn-lg">Submit Shipment Request</button>
         </div>
         </div>
-        
+
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const weightInput = parseInt(document.getElementById('weightInput').value, 10);
+        const select = document.getElementById('packagingType');
+        const options = select.options;
+
+        // Iterate over the options to show/hide based on weight
+        for (let i = options.length - 1; i >= 0; i--) {
+            const optionWeight = parseInt(options[i].getAttribute('data-weight'), 10);
+            if (optionWeight <= weightInput) {
+                select.remove(i);
+            }
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('calc-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form submission until validation is done
+        let shipperPhone = document.getElementById('shipperPhone').value;
+        let phoneError = document.getElementById('phone-error');
+        phoneError.style.display = 'none'; // Clear previous error message
+
+        // Remove non-digit characters for validation
+        let cleanedPhone = shipperPhone.replace(/\D/g, '');
+
+        // Check length and format
+        if (cleanedPhone.length < 10 || cleanedPhone.length > 15) {
+            phoneError.textContent = 'Phone number must be between 10 and 15 digits long.';
+            phoneError.style.display = 'block';
+            return;
+        }
+
+        // For US and CA: must have exactly 10 digits, with an optional leading country code '1' or '+1'
+        if ((cleanedPhone.length === 10 || (cleanedPhone.length === 11 && cleanedPhone.startsWith('1'))) ||
+            (cleanedPhone.length === 12 && cleanedPhone.startsWith('+1'))) {
+            // Phone number is valid, continue with form submission
+            this.submit();
+        } else {
+            phoneError.textContent = 'For US and CA, a phone number must have exactly 10 digits, plus an optional leading country code of "1" or "+1".';
+            phoneError.style.display = 'block';
+        }
+    });
+</script>
+
+
 @endsection
+
+

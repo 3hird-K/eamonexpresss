@@ -10,6 +10,9 @@ use App\Http\Controllers\QuoteController;
 Route::get('/', function () {
     return view('mainpage.home');
 });
+Route::get('/sample', function () {
+    return view('sample');
+});
 
 Route::get('about', function () {
     return view('AboutUs.about');
@@ -25,4 +28,4 @@ Route::post('/shipment', [QuoteController::class, 'shipping'])->name(name: 'ship
 Route::post('/createShipment', [QuoteController::class, 'createdShipment'])->name('createdShipment');
 
 
-// 
+//

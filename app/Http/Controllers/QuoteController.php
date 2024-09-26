@@ -28,7 +28,7 @@ class QuoteController extends Controller
         dd($this->fedExService->getAuthToken());
     }
 
- 
+
     public function getQuote(Request $request)
     {
         // Retrieve form data
@@ -38,7 +38,7 @@ class QuoteController extends Controller
         $toZip = $request->input('zipcodeTo');
         $weight = $request->input('weight'); // Weight input from form
 
-        
+
 
 
         // Validate form inputs
@@ -72,7 +72,7 @@ class QuoteController extends Controller
             'zipcodeFrom' => $fromZip,
             'zipcodeTo' => $toZip,
         ]);
-        
+
 
             return view('shipments.reqShipment', compact('rates', 'validatedData'));
         } catch (\Exception $e) {
@@ -96,14 +96,14 @@ class QuoteController extends Controller
     //         'zipcodeTo'   => 'required|string|max:10',
     //         'weight'      => 'required|numeric|min:0.1', // Ensure weight is numeric and > 0
     //     ]);
-    
+
     //     // Store validated data in session for later use
     //     session($validatedData);
-    
+
     //     // Redirect to the Quote method (where FedEx rates will be fetched)
     //     // return redirect()->route('quote');
     // }
-    
+
 
     // public function Quote()
     // {
@@ -114,16 +114,16 @@ class QuoteController extends Controller
     //         $fromZip = session('zipcodeFrom');
     //         $toZip = session('zipcodeTo');
     //         $weight = session('weight');
-    
+
     //         // Call FedEx service to get rates
     //         $rates = $this->fedExService->getQuote($fromCountry, $fromZip, $toCountry, $toZip, $weight);
-    
-    //         // Return the view with rates data 
+
+    //         // Return the view with rates data
     //         return view('shipments.reqShipment', compact('rates'));
     //     } catch (\Exception $e) {
     //         // Log the error for debugging
     //         Log::error('Error fetching FedEx rates: ' . $e->getMessage());
-    
+
     //         // Redirect back with error message
     //         return redirect()->back()->withErrors('Failed to retrieve shipping rates.');
     //     }
@@ -160,7 +160,7 @@ class QuoteController extends Controller
 
     public function createdShipment(Request $request)
     {
-         
+
         try {
            // Retrieve session values
          $shipperCountryCode = session('fromCountry');
@@ -175,7 +175,7 @@ class QuoteController extends Controller
         //  dd($totalNetCharge);
 
             // dd($fromZip, $toZip);
-    
+
             // Validate request data
             $validatedData = $request->validate([
                 'shipperName' => 'required|string|max:255',
@@ -198,15 +198,15 @@ class QuoteController extends Controller
                 'customsValueQuantity' => 'required|numeric'
             ]);
         //    dd($validatedData);
-    
+
             // Store session data
             session([
                 'fromCountry' => $shipperCountryCode,
                 'toCountry' => $recipientCountryCode,
                 'weight' => $weight,
             ]);
-            
-    
+
+
             // dd($recipientCountryCode);
             // dd($toZip);
             // Call FedEx service to get rates
@@ -240,24 +240,24 @@ class QuoteController extends Controller
                 $validatedData['customsValueQuantity'],
 
             );
-           
-            // dd($shipRequest);
 
-            
-         
+            dd($shipRequest);
 
-     
+
+
+
+
             $value = session('reqErrorResponse');
-           
+
                 if($value =="test"){
-                  
+
                 // $data = json_decode($shipRequest, true);
                 // // dd($data);
                 // $errorCodes = array_map(function($error) {
                 //     return $error['code'];
                 // }, $data['errors']);
 
-                 
+
                 // $errorHandler= '';
                 // if($errorCodes[0] == "PHONENUMBER.TOO.LONG"){
                 //     $errorHandler = "Phone Number is wrong!";
@@ -265,7 +265,7 @@ class QuoteController extends Controller
                 //     $errorHandler = "Recipient Province Code is wrong!";
                 // }
                 return redirect()->back()->withInput()->withErrors("Error");
-                  
+
                 }else{
                     session([
                         'trackingId' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][1]['trackingNumber'],
@@ -275,7 +275,7 @@ class QuoteController extends Controller
 
                     return view('shipments.createdShipment');
                 }
-              
+
                 if($errorDetails[0]['name'] == "errors"){
                     return redirect()->back()->withInput()->withErrors('Invalid Credentials');
                 }else{
@@ -309,9 +309,9 @@ class QuoteController extends Controller
             // dd($shipRequest);
 
             // $errorHandler="";
-            // $errorHandlers = 
+            // $errorHandlers =
             // session()->has('reqErrorResponse') ? session()->forget('') : session()->put('', $errorHandler);
-            
+
             // if ($errorHandlers == null) {
             //     $jsonArray = json_decode($errorHandlers, true); // Use `true` for associative array
             //     $errorCode = $jsonArray['errors'][0]['code'] ?? null;
@@ -319,22 +319,22 @@ class QuoteController extends Controller
             // } else {
             //     return view('shipments.createdShipment');
             // }
-            
+
             // return view('shipments.createdShipment');
-    
+
         } catch (\Exception $e) {
             Log::error('Error fetching FedEx rates: ' . $e->getMessage());
             return redirect()->back()->withInput()->withErrors('Invalid Credentials', dd($e->getMessage()));
-            
+
         }
-       
+
     }
 
 
-    
-  
-   
 
-    
+
+
+
+
 
 }
