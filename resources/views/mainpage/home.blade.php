@@ -1,6 +1,8 @@
 @extends('layouts.layout')
 @section('title', 'Eamon Express | Home')
 @section('css_content', 'css/style.css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+
 
 
 @section('content')
@@ -26,78 +28,114 @@
 
 
 
-<Section class="calculator-area">
-    <div class="container">
-        <div class="contain-form">
-            <h3>Get a quote without signing up</h3>
-            <div class="contain-fields">
-                <form id="calc-form" action="{{ route('retrieveShipments') }}" method="get">
-                    @csrf
-                    <div class="fields">
-                        <div class="contain-icons">
-                            <img src="img/from.svg" alt="From Icon" class="src">
-                            <span>From:</span>
+
+
+
+
+
+<section class="calculator-area py-5" id='contact'>
+    <div class="container-md">
+        <div class="container-form bg-white p-4 rounded shadow-lg" style="max-width: 1000px; margin: auto;">
+            <h3 class="text-center text-white bg-primary py-2 rounded">Get a Quote Without Signing Up</h3>
+            @if(session('error'))
+                <div class="alert alert-danger text-center" id="validateError">
+                    {{ session('error') }}
+                </div>
+            @else
+                {{-- This space is intentionally left blank --}}
+            @endif
+            <form class="d-flex justify-content-center mt-4" id="calc-form" action="{{ route('retrieveShipments') }}" method="get">
+                @csrf
+                <div class="row g-3 align-items-center justify-content-between">
+                    <!-- First Column -->
+                    <div class="col-md-6">
+                        <!-- From Country -->
+                        <div class="mb-3">
+                            <label for="from_country" class="form-label d-flex align-items-center justify-content-start">
+                                <i class="bi bi-geo-alt-fill me-2"></i> Shipper:
+                            </label>
+                            <select name="fromCountry" class="form-select" id="from_country" required>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->code }}" {{ $country->code === 'US' ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-                        <select name="fromCountry" class="form-select" id="from_country">
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->code }}" {{ $country->code === 'US' ? 'selected' : '' }}>
-                                    {{ $country->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
 
-                    <div class="fields zip">
-                        <input type="text" name="zipcodeFrom" class="form-control" placeholder="ZIP Code" id="zipcodeFrom" required>
-                    </div>
+                        <!-- From ZIP Code -->
+                        <div class="mb-3">
+                            <label for="zipcodeFrom" class="form-label d-flex align-items-center justify-content-start">
+                                <i class="bi bi-envelope-fill me-2"></i> From Zip / Postal Code:
+                            </label>
 
-                    <div class="fields">
-                        <div class="contain-icons">
-                            <img src="img/to.svg" alt="To Icon" class="src">
-                            <span>To:</span>
-                        </div>
-                        <select name="toCountry" class="form-select" id="to_country">
-                            @foreach ($countries as $country)
-                                <option value="{{ $country->code }}" {{ $country->code === 'CA' ? 'selected' : '' }}>
-                                    {{ $country->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+                            {{-- <input type="text" id="autocomplete"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required style="background-color: #eeeeee;  "> --}}
+                            {{-- <input type="text" class="form-control" name="shipperCity" id="shipperCity" placeholder="Shipper City" disabled>
+                            <input type="text" class="form-control" name="shipperState" id="shipperState" placeholder="Shipper State" disabled>
+                            <input type="hidden" class="form-control" name="shipperCity" id="shipperCity" placeholder="Shipper City" >
+                            <input type="hidden" class="form-control" name="shipperState" id="shipperState" placeholder="Shipper State" > --}}
 
-                    <div class="fields zip">
-                        <input type="text" name="zipcodeTo" class="form-control" placeholder="ZIP Code" id="zipcodeTo" required>
-                    </div>
-
-                    <div class="fields">
-                        <div class="contain-icons">
-                            <img src="img/parcel-weight.svg" alt="Parcel Weight Icon" class="src">
-                            <span>Parcel Weight:</span>
-                        </div>
-                        <input type="number" class="form-control" name="weight" step="0.01" required>
-                        <div class="contain-perm contain-icons">
-                            <span>LBS</span>
+                            <input type="text" id="inputFromZip"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required style="background-color: #eeeeee;  ">
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary" id="submit-btn">Get Quote</button>
+                    <!-- Second Column -->
+                    <div class="col-md-6">
+                        <!-- To Country -->
+                        <div class="mb-3">
+                            <label for="to_country" class="form-label d-flex align-items-center justify-content-start">
+                                <i class="bi bi-geo-alt-fill me-2"></i> Recipient:
+                            </label>
+                            <select name="toCountry" class="form-select" id="to_country" required>
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->code }}" {{ $country->code === 'CA' ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="col-md-6">
-                            <div id="error-message">
-                                <p class="alert alert-danger text-center" style="display: none;"></p>
+
+                        <!-- To ZIP Code -->
+                        <div class="mb-3">
+                            <label for="zipcodeTo" class="form-label d-flex align-items-center justify-content-start">
+                                <i class="bi bi-envelope-fill me-2"></i> To Zip / Postal Code:
+                            </label>
+                            {{-- <input type="text" id="autocomplete1" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required style='background-color: #eeeeee;  '> --}}
+                            {{-- <input type="text" class="form-control" name="recipientCity" id="recipientCity" placeholder="Recipient City" disabled>
+                            <input type="text" class="form-control" name="recipientState" id="recipientState" placeholder="Recipient State" disabled>
+                            <input type="hidden" class="form-control" name="recipientCity" id="recipientCity" placeholder="Recipient City">
+                            <input type="hidden" class="form-control" name="recipientState" id="recipientState" placeholder="Recipient State"> --}}
+                            <input type="text" id="inputToZip" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required style='background-color: #eeeeee;  '>
+
+                        </div>
+                    </div>
+
+                    <!-- Weight Input -->
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="weight" class="form-label d-flex align-items-center">
+                                <i class="bi bi-box-seam me-2"></i> Parcel Weight:
+                            </label>
+                            <div class="input-group">
+
+
+                                <input type="number" class="form-control" name="weight" step="0.01" placeholder="Weight" required style='background-color: #eeeeee;'>
+                                <span class="input-group-text">LBS</span>
                             </div>
                         </div>
 
+                        <!-- Submit Button -->
+                        <div class="mb-3">
+                            <button type="submit"  class="btn btn-primary px-4">Get Quote</button>
+                        </div>
 
                     </div>
-                </form>
 
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-</Section>
+</section>
 
 
 
@@ -168,7 +206,9 @@
 
 
 
-<script>
+
+
+{{-- <script>
     document.getElementById('calc-form').addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent form submission until validation is done
         let fromCountry = document.getElementById('from_country').value;
@@ -211,9 +251,10 @@
         errorMessage.style.display = 'none';
         this.submit();
     });
-</script>
+</script> --}}
 
 
 @endsection
 
-@section('js_content', 'js/register_animate.js')
+@section('js_content', 'js/locatorRadar.js')
+@section('js_content2', 'js/validatePostal.js')

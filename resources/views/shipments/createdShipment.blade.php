@@ -3,24 +3,20 @@
 @section('css_content', 'css/style.css')
 
 @section('content')
-
-<div class="container-md">
-    
-<div class="card text-center">
-  <div class="card-header">
-    <h3>Billing Document</h3>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Tracking #: {{ session('trackingId') }}</h5>
-    <a href="{{ session('trackingUrl') }}" class="btn btn-primary" target="_blank">Reciept</a>
-  </div>
-  <div class="card-footer text-body-secondary">
-    {{ session('serviceTyped') }}
-  </div>
+<div class="container-md mt-5">
+    <div class="card text-center shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Billing Document</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Tracking #: <span class="font-weight-bold">{{ session('trackingId') }}</span></h5>
+            <a href="{{ session('trackingUrl') }}" class="btn btn-success btn-lg" target="_blank">View Receipt</a>
+        </div>
+        <div class="card-footer text-muted">
+            Service Type: <strong>{{ session('serviceTyped') }}</strong>
+        </div>
+    </div>
 </div>
-
-</div>
-
 @endsection
 
 @section('js_content', 'js/register_animate.js')

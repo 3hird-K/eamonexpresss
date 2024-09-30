@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\LocationController;
 
 
 
@@ -10,8 +11,9 @@ use App\Http\Controllers\QuoteController;
 Route::get('/', function () {
     return view('mainpage.home');
 });
+
 Route::get('/sample', function () {
-    return view('sample');
+    return view('query.locate');
 });
 
 Route::get('about', function () {
@@ -28,4 +30,7 @@ Route::post('/shipment', [QuoteController::class, 'shipping'])->name(name: 'ship
 Route::post('/createShipment', [QuoteController::class, 'createdShipment'])->name('createdShipment');
 
 
-//
+// Radar API
+
+
+Route::get('/search', [LocationController::class, 'search']);

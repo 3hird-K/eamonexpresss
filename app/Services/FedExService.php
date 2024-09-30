@@ -144,7 +144,8 @@ class FedExService
         if ($response->successful()) {
             return $response->json();
         } else {
-            throw new Exception('Failed to retrieve FedEx rate quote: ' . $response->body());
+            // throw new Exception('Failed to retrieve FedEx rate quote: ' . $response->body());
+            throw new Exception($response->body());
         }
     }
 
@@ -191,8 +192,8 @@ class FedExService
             throw new Exception("Failed to retrieve access token.");
         }
 
-       
-        
+
+
         $bookingData = [
             "labelResponseOptions"=> $labelResponseOptions,
             "requestedShipment"=> [
@@ -252,7 +253,7 @@ class FedExService
                     "description"=> "Commodity description",
                     "countryOfManufacture"=> "US",
                     "quantity"=> $customQty,
-                    "quantityUnits"=> "PCS", 
+                    "quantityUnits"=> "PCS",
                     "unitPrice"=> [
                       "amount"=> $totalNetCharge,
                       "currency"=> "USD"
@@ -297,36 +298,36 @@ class FedExService
 
 
 
-            
-            
+
+
             session()->forget('reqErrorResponse');
             try {
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
                     'Authorization' => 'Bearer ' . $authToken,
                 ])->post($endpoint, $bookingData);
-                    
+
                 if ($response->successful()) {
                     return $response->json();
                 } else {
                     $reqResponse = $response->body();
                     session(['reqErrorResponse' => "test"]);
                     // $errorHand = $shipRequest['data']['reqResponse']['errors']['code'];
-                   
-                    
+
+
                     $data = [
                         'name' => 'errors',
                         'email' => compact('reqResponse'),
                     ];
                     return  $reqResponse;
-      
+
                 }
             } catch (Exception $e) {
                 // Handle any exceptions thrown here
                 return view('sample', ['errorMessage' => $e->getMessage()]);
             }
-            
-        
+
+
 
 
         // Make the API request

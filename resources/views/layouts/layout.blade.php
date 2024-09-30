@@ -9,6 +9,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/scrollbar.css">
     <link rel="stylesheet" href="@yield('css_content')">
+
+    <link href="https://js.radar.com/v4.4.3/radar.css" rel="stylesheet">
+    <script src="https://js.radar.com/v4.4.3/radar.min.js"></script>
   </head>
   <body data-bs-spy="scroll" data-bs-target=".navbar" tabindex="0" style="background-color: #b0e1f9;">
 
@@ -52,6 +55,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="@yield('js_content')"></script>
+    <script src="@yield('js_content2')"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   </body>
 </html>

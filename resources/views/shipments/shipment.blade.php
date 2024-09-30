@@ -1,12 +1,15 @@
 @extends('layouts.layout')
 @section('title', 'FedEx Shipping')
 @section('css_content', 'css/style.css')
+<link href="https://js.radar.com/v4.4.2/radar.css" rel="stylesheet">
+    <script src="https://js.radar.com/v4.4.2/radar.min.js"></script>
 
 @section('content')
 <div class="container-xl mt-5 p-4 my-5 rounded">
     <h2 class="text-center">FedEx Shipping Calculator</h2>
     <form action="{{ route('createdShipment')}}" method="POST">
         @csrf
+
 
 
 
@@ -49,11 +52,13 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperStreet">Street Line</label>
-                        <input type="text" class="form-control" id="shipperStreet" name="shipperStreet" placeholder="789 Oak Ave" value="{{ old('shipperStreet') }}"  required>
+                        <input type="text" class="form-control" id="shipperStreet" name="shipperStreet" placeholder="789 Oak Ave - Enter your postal code here" value="{{ old('shipperStreet') }}"  required>
+
+
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperCity">Province/State Code</label>
-                        <input type="text" class="form-control text-uppercase" id="stateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" maxlength="2" required>
+                        <input type="text" class="form-control text-uppercase" id="shipperstateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" maxlength="2" required>
                             @if ($errors->any())
                                 @foreach ($errors->all() as $error)
                                     @if ($error == "Province Code is wrong!")
@@ -276,8 +281,14 @@
         </div>
         </div>
 
+
     </form>
 </div>
+
+{{-- <input type="text" value={{ session('zipcodeTo') }} id="autocomplete"> --}}
+{{-- <input type="text" value={{ session('zipcodeTo') }} id="autocomplete"> --}}
+
+{{-- <div id="autocomplete" /> --}}
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -325,6 +336,11 @@
 </script>
 
 
+
+
+
 @endsection
+@section('js_content', 'js/locatorRadar.js')
+{{-- @section('js_content', 'js/locatorRadar.js') --}}
 
 

@@ -1,110 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Place Autocomplete</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete with Radar API</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://js.radar.com/v4.4.2/radar.css" rel="stylesheet">
     <style>
-        html, body { height: 100%; margin: 0; padding: 0; }
-        gmp-map:not(:defined) { display: none; }
-        #title { color: #fff; background-color: #4d90fe; font-size: 25px; font-weight: 500; padding: 6px 12px; }
-        #infowindow-content { display: none; }
-        .pac-card { background-color: #fff; border-radius: 2px; box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3); margin: 10px; font: 400 18px Roboto, Arial, sans-serif; overflow: hidden; }
-        .pac-controls { display: inline-block; padding: 5px 11px; }
-        .pac-controls label { font-size: 13px; font-weight: 300; }
-        #place-picker { box-sizing: border-box; width: 100%; padding: 0.5rem 1rem 1rem; }
+        .dropdown-menu {
+            max-height: 200px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
-    <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6"></script>
-    <gmpx-api-loader key="YOUR_API_KEY" solution-channel="GMP_CCS_autocomplete_v3"></gmpx-api-loader>
-    <gmp-map id="map" center="40.749933,-73.98633" zoom="13" map-id="YOUR_MAP_ID">
-        <div slot="control-block-start-inline-start" class="pac-card" id="pac-card">
-            <div>
-                <div id="title">Autocomplete search</div>
-                <div id="type-selector" class="pac-controls">
-                    <input type="radio" name="type" id="changetype-all" checked="checked" />
-                    <label for="changetype-all">All</label>
-                    <input type="radio" name="type" id="changetype-establishment" />
-                    <label for="changetype-establishment">Establishment</label>
-                    <input type="radio" name="type" id="changetype-address" />
-                    <label for="changetype-address">Address</label>
-                    <input type="radio" name="type" id="changetype-geocode" />
-                    <label for="changetype-geocode">Geocode</label>
-                    <input type="radio" name="type" id="changetype-cities" />
-                    <label for="changetype-cities">(Cities)</label>
-                    <input type="radio" name="type" id="changetype-regions" />
-                    <label for="changetype-regions">(Regions)</label>
-                </div>
-                <br />
-                <div id="strict-bounds-selector" class="pac-controls">
-                    <input type="checkbox" id="use-strict-bounds" value="" />
-                    <label for="use-strict-bounds">Restrict to map viewport</label>
-                </div>
-            </div>
-            <gmpx-place-picker id="place-picker" for-map="map"></gmpx-place-picker>
+
+    <div class="container mt-5">
+        <h1>Search for Places</h1>
+        <!-- Search input -->
+        <div class="mb-3 position-relative">
+            <input type="text" class="form-control" id="searchInput" placeholder="Start typing an address...">
+            <!-- Dropdown menu -->
+            <ul class="dropdown-menu w-100" id="dropdownMenu"></ul>
         </div>
-        <gmp-advanced-marker id="marker"></gmp-advanced-marker>
-    </gmp-map>
-    <div id="infowindow-content">
-        <span id="place-name" class="title" style="font-weight: bold;"></span><br />
-        <span id="place-address"></span>
     </div>
 
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://js.radar.com/v4.4.2/radar.min.js"></script>
+
     <script>
-        async function init() {
-            await customElements.whenDefined('gmp-map');
+        const searchInput = document.getElementById('searchInput');
+        const dropdownMenu = document.getElementById('dropdownMenu');
 
-            const map = document.querySelector("gmp-map");
-            const marker = document.getElementById("marker");
-            const strictBoundsInputElement = document.getElementById("use-strict-bounds");
-            const placePicker = document.getElementById("place-picker");
-            const infowindowContent = document.getElementById("infowindow-content");
-            const infowindow = new google.maps.InfoWindow();
+        // Listen for input events on the search field
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.trim();
 
-            map.innerMap.setOptions({ mapTypeControl: false });
-            infowindow.setContent(infowindowContent);
+            if (query.length >= 3) {
+                // Create a new XMLHttpRequest
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `/search?query=${encodeURIComponent(query)}`, true);
 
-            placePicker.addEventListener('gmpx-placechange', () => {
-                const place = placePicker.value;
+                // Set up the callback function to handle the response
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const result = JSON.parse(xhr.responseText);
+                        const allAdd = result.addresses;
 
-                if (!place.location) {
-                    window.alert("No details available for input: '" + place.name + "'");
-                    infowindow.close();
-                    marker.position = null;
-                    return;
-                }
+                        // Clear previous results before displaying new ones
+                        clearDropdown();
 
-                if (place.viewport) {
-                    map.innerMap.fitBounds(place.viewport);
-                } else {
-                    map.center = place.location;
-                    map.zoom = 17;
-                }
+                        // Use a Set to track unique entries
+                        const uniqueEntries = new Set();
 
-                marker.position = place.location;
-                infowindowContent.children["place-name"].textContent = place.displayName;
-                infowindowContent.children["place-address"].textContent = place.formattedAddress;
-                infowindow.open(map.innerMap, marker);
-            });
+                        // Process and display each address
+                        if (allAdd && allAdd.length > 0) {
+                            allAdd.forEach((item) => {
+                                const country = item.country;
+                                const code = item.countryCode;
+                                const county = item.county && item.county.name ? item.county.name : '';
+                                console.log(item.postalCode);
 
-            function setupClickListener(id, type) {
-                const radioButton = document.getElementById(id);
-                radioButton.addEventListener("click", () => {
-                    placePicker.type = type;
-                });
+                                // Only display if country and country code are valid
+                                if (country && code) {
+                                    const response = county ? `${country} ${county} ${code}` : `${country} ${code}`;
+
+                                    // Add to the Set to avoid duplicates
+                                    uniqueEntries.add(response);
+                                }
+                            });
+
+                            // Create dropdown items from unique entries
+                            uniqueEntries.forEach((entry) => {
+                                const li = document.createElement('li');
+                                li.classList.add('dropdown-item');
+                                li.textContent = entry; // Use unique response
+
+                                // Add click event to set the selected address in the input field
+                                li.addEventListener('click', () => {
+                                    searchInput.value = entry; // Set selected address
+                                    clearDropdown(); // Hide the dropdown after selection
+                                });
+
+                                dropdownMenu.appendChild(li); // Add the item to the dropdown menu
+                            });
+
+                            dropdownMenu.classList.add('show'); // Show the dropdown if there are valid items
+                        }
+                    }
+                };
+
+                // Send the request
+                xhr.send();
+            } else {
+                // Clear the dropdown if input is less than 3 characters
+                clearDropdown();
             }
-            setupClickListener("changetype-all", "");
-            setupClickListener("changetype-address", "address");
-            setupClickListener("changetype-establishment", "establishment");
-            setupClickListener("changetype-geocode", "geocode");
-            setupClickListener("changetype-cities", "(cities)");
-            setupClickListener("changetype-regions", "(regions)");
+        });
 
-            strictBoundsInputElement.addEventListener("change", () => {
-                placePicker.strictBounds = strictBoundsInputElement.checked;
-            });
+        // Function to clear dropdown
+        function clearDropdown() {
+            dropdownMenu.innerHTML = '';
+            dropdownMenu.classList.remove('show');
         }
-
-        document.addEventListener('DOMContentLoaded', init);
     </script>
+
 </body>
 </html>

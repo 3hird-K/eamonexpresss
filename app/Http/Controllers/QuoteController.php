@@ -6,6 +6,8 @@ use App\Services\FedExService;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use Illuminate\Support\Facades\Log;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
+use PhpParser\JsonDecoder;
 
 class QuoteController extends Controller
 {
@@ -76,58 +78,45 @@ class QuoteController extends Controller
 
             return view('shipments.reqShipment', compact('rates', 'validatedData'));
         } catch (\Exception $e) {
-            // Log the error for debugging purposes
-            Log::error('Error fetching FedEx rates: ' . $e->getMessage());
 
-            // Redirect back with an error message
-            return redirect()->back()->withErrors('Failed to retrieve shipping rates.');
+
+            $error = json_decode($e->getMessage(),true);
+
+            if (json_last_error() === JSON_ERROR_NONE && isset($error['errors'][0]['code'])) {
+                $jsonErr = $error['errors'][0]['code'];
+
+                if ($jsonErr === "SERVICE.PACKAGECOMBINATION.INVALID") {
+                    session()->flash('error', 'Invalid recipient postal code');
+                } elseif ($jsonErr === "COUNTRY.POSTALCODE.INVALID") {
+                    session()->flash('error', 'Invalid shipper postal code.');
+                } else {
+                    // Optional: Handle other error codes or provide a default message
+                    session()->flash('error', 'An unknown error occurred.');
+                }
+            } else {
+                // session()->flash('error', 'An error occurred while processing your request.');
+            }
+
+            // $jsonErr = $error['errors'][0]['code'];
+
+            // if($jsonErr ===  "SERVICE.PACKAGECOMBINATION.INVALID"){
+
+            //     session()->flash('error', 'Invalid recipient postal code');
+            // } elseif ($jsonErr === "COUNTRY.POSTALCODE.INVALID" ){
+            //     session()->flash('error', 'Invalid shipper postal code.');
+            // }
+            $countries = Country::all();
+
+
+
+            // SERVICE.PACKAGECOMBINATION.INVALID - for recipient postal
+            // COUNTRY.POSTALCODE.INVALID - for shipper postal
+            return view('mainpage.home', compact('countries'));
+                // return redirect()->back()->withErrors('Failed to retrieve shipping rates.');
         }
 
-    //     return redirect()->back()->withErrors('');
     }
 
-    // public function getQuote(Request $request)
-    // {
-    //     // Retrieve and validate form inputs
-    //     $validatedData = $request->validate([
-    //         'fromCountry' => 'required|string|max:2',   // Example: US, UK
-    //         'toCountry'   => 'required|string|max:2',
-    //         'zipcodeFrom' => 'required|string|max:10',
-    //         'zipcodeTo'   => 'required|string|max:10',
-    //         'weight'      => 'required|numeric|min:0.1', // Ensure weight is numeric and > 0
-    //     ]);
-
-    //     // Store validated data in session for later use
-    //     session($validatedData);
-
-    //     // Redirect to the Quote method (where FedEx rates will be fetched)
-    //     // return redirect()->route('quote');
-    // }
-
-
-    // public function Quote()
-    // {
-    //     try {
-    //         // Retrieve data from session
-    //         $fromCountry = session('fromCountry');
-    //         $toCountry = session('toCountry');
-    //         $fromZip = session('zipcodeFrom');
-    //         $toZip = session('zipcodeTo');
-    //         $weight = session('weight');
-
-    //         // Call FedEx service to get rates
-    //         $rates = $this->fedExService->getQuote($fromCountry, $fromZip, $toCountry, $toZip, $weight);
-
-    //         // Return the view with rates data
-    //         return view('shipments.reqShipment', compact('rates'));
-    //     } catch (\Exception $e) {
-    //         // Log the error for debugging
-    //         Log::error('Error fetching FedEx rates: ' . $e->getMessage());
-
-    //         // Redirect back with error message
-    //         return redirect()->back()->withErrors('Failed to retrieve shipping rates.');
-    //     }
-    // }
 
 
 
@@ -241,7 +230,7 @@ class QuoteController extends Controller
 
             );
 
-            dd($shipRequest);
+            // dd($shipRequest);
 
 
 
