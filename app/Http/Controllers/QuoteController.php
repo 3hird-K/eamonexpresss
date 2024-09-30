@@ -161,6 +161,7 @@ class QuoteController extends Controller
          $toZip = session('zipcodeTo');
          $totalNetCharge = session('totalNetCharge');
 
+
         //  dd($totalNetCharge);
 
             // dd($fromZip, $toZip);
@@ -193,7 +194,7 @@ class QuoteController extends Controller
                 'fromCountry' => $shipperCountryCode,
                 'toCountry' => $recipientCountryCode,
                 'weight' => $weight,
-            ]);
+                       ]);
 
 
             // dd($recipientCountryCode);
@@ -232,6 +233,10 @@ class QuoteController extends Controller
 
             // dd($shipRequest);
 
+            $qty = $validatedData['customsValueQuantity'];
+
+            $totalWithPackage = strval($totalNetCharge * $qty);
+            // dd($totalWithPackage);
 
 
 
@@ -239,20 +244,7 @@ class QuoteController extends Controller
             $value = session('reqErrorResponse');
 
                 if($value =="test"){
-
-                // $data = json_decode($shipRequest, true);
-                // // dd($data);
-                // $errorCodes = array_map(function($error) {
-                //     return $error['code'];
-                // }, $data['errors']);
-
-
-                // $errorHandler= '';
-                // if($errorCodes[0] == "PHONENUMBER.TOO.LONG"){
-                //     $errorHandler = "Phone Number is wrong!";
-                // }else if($errorCodes[0] == "RECIPIENT.STATEORPROVINCECODE.INVALID"){
-                //     $errorHandler = "Recipient Province Code is wrong!";
-                // }
+                    // dd("hello");
                 return redirect()->back()->withInput()->withErrors("Error");
 
                 }else{
@@ -262,54 +254,12 @@ class QuoteController extends Controller
                         'serviceTyped' => $shipRequest['output']['transactionShipments'][0]['serviceType'],
                     ]);
 
-                    return view('shipments.createdShipment');
-                }
-
-                if($errorDetails[0]['name'] == "errors"){
-                    return redirect()->back()->withInput()->withErrors('Invalid Credentials');
-                }else{
-
-
-
-                    return view('shipments.createdShipment');
+                    return view('shipments.createdShipment', compact('totalWithPackage'));
                 }
 
 
 
 
-
-
-
-
-
-
-
-                // dd($shipRequest);
-            // if($errorDetails[0]['name'] == "errors"){
-            //     // return view('shipments.shipment', compact('serviceType','fromCountry','toCountry'));
-            //     return redirect()->back()->withInput()->withErrors('Invalid Credentials');
-            // }else{
-            //     return view('shipments.createdShipment');
-            // }
-            // $encodedLabel = $shipRequest['output']['transactionShipments'][0]['pieceResponses'][0]['packageDocuments'][0]['url'];
-
-            // dump($shipRequest);
-            // $errorHand = $shipRequest['data']['reqResponse']['errors']['code'];
-            // dd($shipRequest);
-
-            // $errorHandler="";
-            // $errorHandlers =
-            // session()->has('reqErrorResponse') ? session()->forget('') : session()->put('', $errorHandler);
-
-            // if ($errorHandlers == null) {
-            //     $jsonArray = json_decode($errorHandlers, true); // Use `true` for associative array
-            //     $errorCode = $jsonArray['errors'][0]['code'] ?? null;
-            //     return view('shipments.shipment', compact('errorCode', 'serviceType'));
-            // } else {
-            //     return view('shipments.createdShipment');
-            // }
-
-            // return view('shipments.createdShipment');
 
         } catch (\Exception $e) {
             Log::error('Error fetching FedEx rates: ' . $e->getMessage());
@@ -320,6 +270,9 @@ class QuoteController extends Controller
     }
 
 
+    // public function pay(){
+    //     return view('sample');
+    // }
 
 
 

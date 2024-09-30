@@ -9,9 +9,23 @@
             <h3 class="mb-0">Billing Document</h3>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Tracking #: <span class="font-weight-bold">{{ session('trackingId') }}</span></h5>
-            <a href="{{ session('trackingUrl') }}" class="btn btn-success btn-lg" target="_blank">View Receipt</a>
+
+            <form action="{{ route('payment') }}" method="POST">
+                @csrf
+
+                <h5 class="card-title">Tracking #: <span class="font-weight-bold">{{ session('trackingId') }}</span></h5>
+                <p>Total: <span class="fw-bold">$ {{ $totalWithPackage }}</span></p>
+                <input type="hidden" name="amount" value="{{ $totalWithPackage }}">
+                <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-success btn-md mx-2">Pay Using Paypal</button>
+                
+                </div>
+            </form>
+
+
         </div>
+
+
         <div class="card-footer text-muted">
             Service Type: <strong>{{ session('serviceTyped') }}</strong>
         </div>
