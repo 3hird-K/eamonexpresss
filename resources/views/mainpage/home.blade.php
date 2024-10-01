@@ -49,6 +49,15 @@
                 <div class="row g-3 align-items-center justify-content-between">
                     <!-- First Column -->
                     <div class="col-md-6">
+
+                        {{-- Complete Address --}}
+                        <div class="mb-3">
+                            <label for="shipperStreet">Shippers Postal Codes</label>
+                            <input type="text" class="form-control" id="shipperStreet" name="shipperStreet" placeholder="72601 - Enter your postal code here" value="{{ old('shipperStreet') }}"  required>
+
+
+                        </div>
+
                         <!-- From Country -->
                         <div class="mb-3">
                             <label for="from_country" class="form-label d-flex align-items-center justify-content-start">
@@ -69,18 +78,26 @@
                                 <i class="bi bi-envelope-fill me-2"></i> From Zip / Postal Code:
                             </label>
 
-                            {{-- <input type="text" id="autocomplete"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required style="background-color: #eeeeee;  "> --}}
-                            {{-- <input type="text" class="form-control" name="shipperCity" id="shipperCity" placeholder="Shipper City" disabled>
-                            <input type="text" class="form-control" name="shipperState" id="shipperState" placeholder="Shipper State" disabled>
-                            <input type="hidden" class="form-control" name="shipperCity" id="shipperCity" placeholder="Shipper City" >
-                            <input type="hidden" class="form-control" name="shipperState" id="shipperState" placeholder="Shipper State" > --}}
 
                             <input type="text" id="inputFromZip"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required style="background-color: #eeeeee;  ">
+                            {{-- <input type="text" id="inputFromZip"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required> --}}
+
+                            <input type="hidden" class="form-control text-uppercase" id="shipperstateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" required>
+
+                            <input type="hidden" class="form-control" id="shipperCity" name="shipperCity" placeholder="Green Valley" maxlength="35" value="{{ old('shipperCity') }}" required>
+
+
                         </div>
                     </div>
 
                     <!-- Second Column -->
                     <div class="col-md-6">
+                        {{-- Complete Address --}}
+                        <div class="mb-3">
+                            <label for="recipientStreet">Recipient Postal Codes</label>
+                            <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="m1m1m1 - Enter your postal code here" value="{{ session('zipcodeTo') }}"  required>
+                        </div>
+
                         <!-- To Country -->
                         <div class="mb-3">
                             <label for="to_country" class="form-label d-flex align-items-center justify-content-start">
@@ -100,12 +117,13 @@
                             <label for="zipcodeTo" class="form-label d-flex align-items-center justify-content-start">
                                 <i class="bi bi-envelope-fill me-2"></i> To Zip / Postal Code:
                             </label>
-                            {{-- <input type="text" id="autocomplete1" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required style='background-color: #eeeeee;  '> --}}
-                            {{-- <input type="text" class="form-control" name="recipientCity" id="recipientCity" placeholder="Recipient City" disabled>
-                            <input type="text" class="form-control" name="recipientState" id="recipientState" placeholder="Recipient State" disabled>
-                            <input type="hidden" class="form-control" name="recipientCity" id="recipientCity" placeholder="Recipient City">
-                            <input type="hidden" class="form-control" name="recipientState" id="recipientState" placeholder="Recipient State"> --}}
                             <input type="text" id="inputToZip" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required style='background-color: #eeeeee;  '>
+                            {{-- <input type="text" id="inputToZip" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required> --}}
+
+                            <input type="hidden" class="form-control text-uppercase" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" required value="{{ old('recipientstateOrProvinceCode') }}">
+
+                            <input type="hidden" class="form-control" id="recipientCity" name="recipientCity" placeholder="Toronto" maxlength="35" required>
+
 
                         </div>
                     </div>
@@ -256,5 +274,5 @@
 
 @endsection
 
-@section('js_content', 'js/locatorRadar.js')
+@section('js_content', 'js/locateAddressWithPostal.js')
 @section('js_content2', 'js/validatePostal.js')

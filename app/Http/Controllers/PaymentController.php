@@ -37,7 +37,7 @@ class PaymentController extends Controller
 
             // dd($response);
 
-            
+
         if ($response->isRedirect()) {
             // redirect to offsite payment gateway
             $response->redirect();
@@ -48,10 +48,10 @@ class PaymentController extends Controller
             // payment failed: display message to customer
             echo $response->getMessage();
         }
-            
+
         } catch(\Throwable $th){
             return $th->getMessage();
-        } 
+        }
 
     }
 
@@ -89,12 +89,12 @@ class PaymentController extends Controller
     }
 }
 
-    
+
 
 
 
     public function error(){
-        return "User Decline the payment!";
+        return view('paypal.error');
     }
 
 }

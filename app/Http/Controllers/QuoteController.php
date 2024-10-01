@@ -40,6 +40,26 @@ class QuoteController extends Controller
         $toZip = $request->input('zipcodeTo');
         $weight = $request->input('weight'); // Weight input from form
 
+        // Inputs to be passed on shipment view
+        $recipientStreet = $request->input('recipientStreet');
+        $recipientCity = $request->input('recipientCity');
+        $recipientstateOrProvinceCode = $request->input('recipientstateOrProvinceCode');
+        $shipperStreet = $request->input('shipperStreet');
+        $shipperCity = $request->input('shipperCity');
+        $shipperstateOrProvinceCode = $request->input('shipperstateOrProvinceCode');
+
+        // Debugging: Dump and die to check the values
+        // dd($recipientStreet, $recipientCity, $recipientstateOrProvinceCode, $shipperStreet, $shipperCity, $shipperstateOrProvinceCode);
+
+        session([
+            'recipientStreet' => $recipientStreet,
+            'recipientCity' => $recipientCity,
+            'recipientstateOrProvinceCode' => $recipientstateOrProvinceCode,
+            'shipperStreet' => $shipperStreet,
+            'shipperCity' => $shipperCity,
+            'shipperstateOrProvinceCode' => $shipperstateOrProvinceCode,
+        ]);
+
 
 
 
@@ -131,19 +151,23 @@ class QuoteController extends Controller
             'totalNetCharge' => $totalNetCharge
         ]);
 
-        $fromCountry = session('fromCountry');
-        $toCountry = session('toCountry');
-        $weight = session('weight');
-        $serviceType = session('serviceType');
-        $totalNetCharge = session('totalNetCharge');
+    $data = [
+        'fromCountry' => session('fromCountry'),
+        'toCountry' => session('toCountry'),
+        'weight' => session('weight'),
+        'serviceType' => session('serviceType'),
+        'totalNetCharge' => session('totalNetCharge'),
+        'recipientStreet' => session('recipientStreet'),
+        'recipientCity' => session('recipientCity'),
+        'recipientstateOrProvinceCode' => session('recipientstateOrProvinceCode'),
+        'shipperStreet' => session('shipperStreet'),
+        'shipperCity' => session('shipperCity'),
+        'shipperstateOrProvinceCode' => session('shipperstateOrProvinceCode'),
+    ];
 
+    // Pass the data to the view
+    return view('shipments.shipment', $data);
 
-
-
-        // dd($totalNetCharge);
-
-
-        return view('shipments.shipment', compact('fromCountry', 'toCountry', 'weight', 'serviceType', 'totalNetCharge'));
     }
 
 
@@ -230,6 +254,7 @@ class QuoteController extends Controller
                 $validatedData['customsValueQuantity'],
 
             );
+
 
             // dd($shipRequest);
 

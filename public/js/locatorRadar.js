@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 near: null, // Use default IP-based location
                 onResults: (addresses) => {
                     console.log(addresses);
-                    if (addresses.length > 0) {
+
+                    if (addresses.length == 1) {
+                        console.log(addresses);
+
                         const firstResult = addresses[0]; // Get the first result
                         const city = firstResult["county"] || "";
                         const state = firstResult["state"] || "";
@@ -37,20 +40,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         console.log(`${countyState} ${stateCode}`);
                         Radar.ui.autocomplete.onSelection(firstResult); // Only call once
+                    } else {
+                        console.log("hello");
                     }
-                    console.log("Results:", addresses);
+                    // console.log("Results:", addresses);
                 },
                 onSelection: (address) => {
+                    if (address.postalCode) {
+                        console.log(address);
+                    } else {
+                        console.log("not found!");
+                    }
+
                     // Handle the selected address
                     console.log("Selected address:", address);
 
                     // Extract city and state from the selected address
-                    const city = address.city || "Default City"; // Set default if not available
-                    const state = address.state || "Default State"; // Set default if not available
+                    // const city = address.county || ""; // Set default if not available
+                    // const state = address.state || ""; // Set default if not available
 
-                    // Update the input fields with city and state
-                    if (cityInput) cityInput.value = city;
-                    if (stateInput) stateInput.value = state;
+                    // // Update the input fields with city and state
+                    // if (cityInput) cityInput.value = city;
+                    // if (stateInput) stateInput.value = state;
                 },
             });
         } else {

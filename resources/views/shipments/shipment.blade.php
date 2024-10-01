@@ -28,11 +28,15 @@
                 <input type="hidden" name="shipperCountryCode" value="{{ $fromCountry }}" class="form-control fw-bold">
                 </div>
                 <div class="row">
+
+                    {{-- Shipper Name --}}
+
                 <div class="col-md-6 mb-3">
                     <label for="shipperName">Shipper Name</label>
                     <input type="text" class="form-control" id="shipperName" name="shipperName" placeholder="Enter shipper name" value="{{ old('shipperName') }}" required>
                 </div>
 
+                {{-- Shipper Phone --}}
                 <div class="col-md-6 mb-3">
                     <label for="shipperPhone">The shipper's phone number.</label>
                     <input type="tel" class="form-control" id="shipperPhone" name="shipperPhone" placeholder="(604) 555-7890" minlength="10" maxlength="15" required>
@@ -50,15 +54,20 @@
                             @endforeach
                          @endif --}}
                     </div>
+
+
+                    {{-- Shipper Street --}}
+
                     <div class="col-md-6 mb-3">
-                        <label for="shipperStreet">Street Line</label>
-                        <input type="text" class="form-control" id="shipperStreet" name="shipperStreet" placeholder="789 Oak Ave - Enter your postal code here" value="{{ old('shipperStreet') }}"  required>
+                        <label for="shipperStreet">Shipper Street</label>
+                        <input type="text" class="form-control" id="shipperStreet" name="shipperStreet" placeholder="Shipper Street" value="{{ old('shipperStreet', $shipperStreet) }}" required>
+
 
 
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperCity">Province/State Code</label>
-                        <input type="text" class="form-control text-uppercase" id="shipperstateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" maxlength="2" required>
+                        <input type="text" class="form-control text-uppercase" id="shipperstateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" value="{{ old('shipperstateOrProvinceCode', $shipperstateOrProvinceCode ) }}" required>
                             @if ($errors->any())
                                 @foreach ($errors->all() as $error)
                                     @if ($error == "Province Code is wrong!")
@@ -72,11 +81,11 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperCity">City</label>
-                        <input type="text" class="form-control" id="shipperCity" name="shipperCity" placeholder="Green Valley" maxlength="35" value="{{ old('shipperCity') }}" required>
+                        <input type="text" class="form-control" id="shipperCity" name="shipperCity" placeholder="Green Valley" maxlength="35" value="{{ old('shipperCity', $shipperCity) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperCity">Postal Code</label>
-                        <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeFrom') }}" disabled>
+                        <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeFrom') }}">
                     </div>
 
                 </div>
@@ -106,12 +115,13 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="recipientStreet">Street Line </label>
-                        <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="123 Maple St" value="{{ old('recipientStreet') }}"  required>
+                        <label for="recipientStreet">Recipient Street </label>
+                        <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="123 Maple St" value="{{ old('recipientStreet', $recipientStreet) }}"  required>
+                        {{-- <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="123 Maple St" value="{{ old('recipientStreet') }}"  required> --}}
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="recipientstateOrProvinceCode">Province/State Code</label>
-                        <input type="text" class="form-control text-uppercase" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" maxlength="2" required value="{{ old('recipientstateOrProvinceCode') }}">
+                        <input type="text" class="form-control text-uppercase" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" required value="{{ old('recipientstateOrProvinceCode', $recipientstateOrProvinceCode) }}" max="2">
                         @if ($errors->any())
                                 @foreach ($errors->all() as $error)
                                     @if ($error == "Recipient Province Code is wrong!")
@@ -126,11 +136,11 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="recipientCity">City</label>
-                        <input type="text" class="form-control" id="recipientCity" name="recipientCity" placeholder="Toronto" maxlength="35" required>
+                        <input type="text" class="form-control" id="recipientCity" name="recipientCity" placeholder="Toronto" maxlength="35" value="{{ old('$recipientCity', $recipientCity ) }}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="shipperCity">Postal Code</label>
-                        <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeTo') }}" disabled>
+                        <input type="text" class="form-control" id="shipperCity" value="{{ session('zipcodeTo') }}" >
                     </div>
                 </div>
             </div>
@@ -340,7 +350,7 @@
 
 
 @endsection
-@section('js_content', 'js/locatorRadar.js')
+{{-- @section('js_content', 'js/locatorRadar.js') --}}
 {{-- @section('js_content', 'js/locatorRadar.js') --}}
 
 
