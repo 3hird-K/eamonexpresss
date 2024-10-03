@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #aee0f9;
+    margin: 0;
+    font-family: "Work Sans", sans-serif;
+}
+.column {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.left {
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.right {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    max-width: 70%;
+    height: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .left,
+    .right {
+        flex: 100%;
+    }
+    .left {
+        text-align: center;
+        padding-left: 0;
+    }
+    .info {
+        padding-left: 30px;
+    }
+}
+
+.row-one {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.row-two,
+.row-two-title {
+    background-color: #81d0f8;
+}
+
+.row-two-title {
+    margin: o;
+}
+
+.title {
+    color: #03045e;
+    font-size: 56px;
+    line-height: 1.2em;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: initial;
+    letter-spacing: 0px;
+    margin-bottom: 20px;
+}
+
+.info {
+    color: #03045e;
+    font-size: 18px;
+    line-height: 1.7em;
+    padding-right: 30px;
+}
+
+.row-two {
+    padding-top: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 0;
+    align-items: stretch;
+}
+
+.column-two {
+    width: 30%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.card-left {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.card-right {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card-left {
+    background-color: white;
+}
+
+.card-left p {
+    color: #03045e;
+    line-height: 1.7em;
+}
+
+.card-right h2,
+.card-right p {
+    color: white;
+}
+
+.card-right {
+    background-color: #6cb4d9;
+}
+
+.title-one,
+.title-one p {
+    margin-top: auto;
+}
+
+@media screen and (max-width: 800px) {
+    .column-two {
+        width: 55%;
+        margin-bottom: 20px;
+    }
+}
+
+.img1 {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+    height: auto;
+}
+
+.title-one {
+    color: #03045e;
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.title-two {
+    text-align: center;
+    color: #03045e;
+    font-size: 40px;
+}
+
+.row-two {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.row-two-title h2 {
+    text-align: center;
+    color: #03045e;
+    font-size: 56px;
+    line-height: 1.2em;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: initial;
+    letter-spacing: 0px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    padding-top: 30px;
+}
+
+.row-two-title p {
+    margin: 0;
+    color: #03045e;
+    font-size: 18px;
+    line-height: 1.7em;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.row-three {
+    height: 200px;
+}
+
+.row-three h2 {
+    font-size: 56px;
+    line-height: 1.2em;
+    font-weight: 700;
+    font-style: normal;
+    text-decoration: initial;
+    letter-spacing: 0px;
+    margin-bottom: 20px;
+}
+
+.row-three h2 {
+    text-align: center;
+    color: #03045e;
+}
+
+.btn button {
+    color: #ffffff;
+    border-radius: 25px;
+    border: none;
+    width: 30%;
+    font-size: 18px;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: hsla(197, 100%, 50%, 0.55);
+}
+.btn button:hover {
+    background-color: #81d0f8;
+    color: #03045e;
+    transition: 0.2s;
+}
+
+.btn {
+    text-align: center;
+}

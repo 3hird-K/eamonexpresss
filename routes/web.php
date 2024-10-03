@@ -8,10 +8,32 @@ use App\Http\Controllers\LocationController;
 
 
 
-
+Route::get('blog', function () {
+    return view('Blogs.blog');
+});
+Route::get( 'review', function () {
+    return view('SubPages.Review');
+});
+Route::get( 'international-shipping', function () {
+    return view('SubPages.International_shipping');
+});
+Route::get( 'domestic-shipping', function () {
+    return view('SubPages.Domestic_shipping');
+});
+Route::get('delivery', function () {
+    return view('SubPages.delivery_service');
+});
+Route::get('couriers', function () {
+    return view('SubPages.couriers');
+});
 Route::get('/', function () {
     return view('mainpage.home');
 });
+Route::get('contact', function () {
+    return view('ContactUs.contact');
+});
+
+
 
 Route::get('/sample', function () {
     return view('query.locate');

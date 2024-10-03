@@ -477,45 +477,6 @@ section button {
 }
 /* End Banner Area CSS */
 
-/* Header */
-header .navbar-expand-lg .navbar-collapse {
-    flex-basis: unset;
-    width: auto;
-    flex-grow: unset;
-}
-header .navbar-brand img {
-    max-width: 150px;
-    width: 100%;
-}
-header {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
-}
-header#headerSection.scrolled .navbar-brand img {
-    max-width: 100px;
-}
-header .navbar {
-    padding: 0;
-}
-header#headerSection.scrolled {
-    position: fixed;
-    background: white;
-    z-index: 100;
-}
-li.nav-item a {
-    color: #03045e;
-    font-size: 18px;
-    font-weight: 600;
-    font-family: "Inter", sans-serif;
-    display: block;
-}
-header .navbar-nav {
-    gap: 15px;
-}
-/* End Header */
-
 /* Calculator Sec */
 
 .calculator-area {
@@ -658,44 +619,6 @@ input::placeholder {
     justify-content: space-between;
 }
 /* End How it work */
-
-/* Footer */
-footer {
-    background-color: #81d0f8;
-    padding: 50px 20px;
-}
-.wrapper-footer {
-    display: flex;
-    justify-content: space-between;
-}
-footer ul {
-    list-style: none;
-}
-footer ul li a {
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 600;
-    color: #03045e;
-    font-family: "";
-    font-family: "Inter", sans-serif;
-}
-footer ul li {
-    padding: 5px 0;
-    text-align: center;
-}
-.contain-media {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-.copywrite {
-    background-color: #2fb7fd;
-}
-.copywrite h4 {
-    text-align: center;
-    padding: 15px 0;
-}
-/* End FOoter */
 
 /* Update Sec */
 form#updatefrm {
