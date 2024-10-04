@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Eamon Express | Home')
+@section('title', 'Eamon Express | About')
 @section('css_content', 'css/style.css')
 
 @section('content')
@@ -19,7 +19,7 @@
 
 <div class="row-two">
     <div class="column left">
-        <img src="img/About/flat-design-cash-delivery.png" class="img">     
+        <img src="img/About/flat-design-cash-delivery.png" class="img">
     </div>
 
     <div class="column right">
@@ -69,14 +69,14 @@
     </div>
 
     <div class="column left">
-    <img src="img/About/delivery-man-diving-motorcycle-moterbike-with-map-screen-tablet.png" class="img">     
+    <img src="img/About/delivery-man-diving-motorcycle-moterbike-with-map-screen-tablet.png" class="img">
     </div>
 </div>
 
 <div class="row-four">
-    
+
   <div class="column-left-new">
-    <img src="img/About/Our Story (1).png" class="img1">     
+    <img src="img/About/Our Story (1).png" class="img1">
     </div>
 
     <div class="column-right-new">
@@ -85,7 +85,7 @@
   <br><br>
 Aside from affordability and reliability we wanted to ship to every country there is.  However, we settle for most countries there is a handful of countries we’re legally,  not allowed to ship to. Global shipping is what we do. Another important factor was user experience and how do we make it as fluid as possible. Out software makes it a breeze and clear and simple as possible.</p>
     </div>
-        
+
 </div>
 
 <div class="row-five">
@@ -94,6 +94,6 @@ Aside from affordability and reliability we wanted to ship to every country ther
 <button type="submit">Yes! Get me a quote</button>
 </div>
 </div>
-  
+
 @endsection
 @section('js_content', 'js/register_animate.js')

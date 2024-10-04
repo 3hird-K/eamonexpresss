@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Eamon Express | Home')
+@section('title', 'Eamon Express | Contact')
 @section('css_content', 'css/contact.css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
 
