@@ -186,7 +186,7 @@ class QuoteController extends Controller
          $totalNetCharge = session('totalNetCharge');
 
 
-        //  dd($totalNetCharge);
+        //  dd($totalNetCharge, $weight);
 
             // dd($fromZip, $toZip);
 
@@ -256,7 +256,7 @@ class QuoteController extends Controller
             );
 
 
-            // dd($shipRequest);
+             dd($shipRequest);
 
             $qty = $validatedData['customsValueQuantity'];
 

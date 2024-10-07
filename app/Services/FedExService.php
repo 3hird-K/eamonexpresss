@@ -180,7 +180,7 @@ class FedExService
         $customQty
     ){
 
-        // dd($customAmount, $customQty);
+       
 
         $endpoint = $this->isSandbox
             ? 'https://apis-sandbox.fedex.com/ship/v1/shipments'
@@ -191,108 +191,210 @@ class FedExService
         if (!$authToken) {
             throw new Exception("Failed to retrieve access token.");
         }
+       
+        
 
-
+        // $bookingData = [
+        //     "labelResponseOptions"=> $labelResponseOptions,
+        //     "requestedShipment"=> [
+        //       "shipper"=> [
+        //         "contact"=> [
+        //           "personName"=> $shipperName,
+        //           "phoneNumber"=> $shipperPhone,
+        //         //   "companyName"=> "Shipper Company Name"
+        //         ],
+        //         "address"=> [
+        //           "streetLines"=> [
+        //             $shipperStreet
+        //           ],
+        //           "city"=> $shipperCity,
+        //           "stateOrProvinceCode"=> $shipperstateOrProvinceCode,
+        //           "postalCode"=> $fromZip,
+        //           "countryCode"=> $shipperCountryCode
+        //         ]
+        //       ],
+        //       "recipients"=> [
+        //         [
+        //           "contact"=> [
+        //             "personName"=> $recipientName,
+        //             "phoneNumber"=> $recipientPhone,
+        //             // "companyName"=> "Recipient Company Name"
+        //           ],
+        //           "address"=> [
+        //             "streetLines"=> [
+        //               $recipientStreet,
+        //             ],
+        //             "city"=> $recipientCity,
+        //             "stateOrProvinceCode"=> $recipientstateOrProvinceCode,
+        //             "postalCode"=> $toZip,
+        //             "countryCode"=> $recipientCountryCode
+        //           ]
+        //         ]
+        //       ],
+        //       "shipDatestamp"=> $shipDate,
+        //       "serviceType"=> $serviceType,
+        //       "packagingType"=> $packagingType, // tobemodified
+        //       "pickupType"=> $pickupType,
+        //       "blockInsightVisibility"=> false,
+        //       "shippingChargesPayment"=> [
+        //         "paymentType"=> "SENDER"
+        //       ],
+        //       "labelSpecification"=> [
+        //         "imageType"=> $imageType,
+        //         "labelStockType"=> $labelStockType
+        //       ],
+        //       "customsClearanceDetail"=> [
+        //         "dutiesPayment"=> [
+        //           "paymentType"=> "SENDER"
+        //         ],
+        //         "isDocumentOnly"=> true,
+        //         "commodities"=> [
+        //           [
+        //             "description"=> "Commodity description",
+        //             "countryOfManufacture"=> "US",
+        //             "quantity"=> $customQty,
+        //             "quantityUnits"=> "PCS",
+        //             "unitPrice"=> [
+        //               "amount"=> $totalNetCharge,
+        //               "currency"=> "USD"
+        //             ],
+        //             "customsValue"=> [
+        //               "amount"=> $customAmount,
+        //               "currency"=> "USD"
+        //             ],
+        //             "weight"=> [
+        //               "units"=> "LB",
+        //               "value"=> $weight
+        //             ]
+        //           ]
+        //         ]
+        //       ],
+        //       "shippingDocumentSpecification"=> [
+        //         "shippingDocumentTypes"=> [
+        //           "COMMERCIAL_INVOICE"
+        //         ],
+        //         "commercialInvoiceDetail"=> [
+        //           "documentFormat"=> [
+        //             "stockType"=> "PAPER_LETTER",
+        //             "docType"=> "PDF" // fixed to PDF
+        //           ]
+        //         ]
+        //       ],
+        //       "requestedPackageLineItems"=> [
+        //         [
+        //           "weight"=> [
+        //             "units"=> "LB",
+        //             "value"=> 70
+        //           ]
+        //         ]
+        //       ]
+        //     ],
+        //     "accountNumber"=> [
+        //       "value"=> "740561073"
+        //     ]
+        //     ];
 
         $bookingData = [
-            "labelResponseOptions"=> $labelResponseOptions,
-            "requestedShipment"=> [
-              "shipper"=> [
+          "labelResponseOptions"=> "URL_ONLY",
+          "requestedShipment"=> [
+            "shipper"=> [
+              "contact"=> [
+                "personName"=> "SHIPPER NAME",
+                "phoneNumber"=> 1234567890,
+              //   "companyName"=> "Shipper Company Name"
+              ],
+              "address"=> [
+                "streetLines"=> [
+                  "SHIPPER STREET LINE 1"
+                ],
+                "city"=> "Memphis",
+                "stateOrProvinceCode"=> "TN",
+                "postalCode"=> 38116,
+                "countryCode"=> "US"
+              ]
+            ],
+            "recipients"=> [
+              [
                 "contact"=> [
-                  "personName"=> $shipperName,
-                  "phoneNumber"=> $shipperPhone,
-                //   "companyName"=> "Shipper Company Name"
+                  "personName"=>"RECIPIENT NAME",
+                  "phoneNumber"=> 1234567890,
+                  // "companyName"=> "Recipient Company Name"
                 ],
                 "address"=> [
                   "streetLines"=> [
-                    $shipperStreet
+                    "RECIPIENT STREET LINE 1",
+                    "RECIPIENT STREET LINE 2",
+                    "RECIPIENT STREET LINE 3"
                   ],
-                  "city"=> $shipperCity,
-                  "stateOrProvinceCode"=> $shipperstateOrProvinceCode,
-                  "postalCode"=> $fromZip,
-                  "countryCode"=> $shipperCountryCode
+                  "city"=> "RICHMOND",
+                  "stateOrProvinceCode"=> "BC",
+                  "postalCode"=> "V7C4V7",
+                  "countryCode"=> "CA"
                 ]
-              ],
-              "recipients"=> [
-                [
-                  "contact"=> [
-                    "personName"=> $recipientName,
-                    "phoneNumber"=> $recipientPhone,
-                    // "companyName"=> "Recipient Company Name"
-                  ],
-                  "address"=> [
-                    "streetLines"=> [
-                      $recipientStreet,
-                    ],
-                    "city"=> $recipientCity,
-                    "stateOrProvinceCode"=> $recipientstateOrProvinceCode,
-                    "postalCode"=> $toZip,
-                    "countryCode"=> $recipientCountryCode
-                  ]
-                ]
-              ],
-              "shipDatestamp"=> $shipDate,
-              "serviceType"=> $serviceType,
-              "packagingType"=> $packagingType, // tobemodified
-              "pickupType"=> $pickupType,
-              "blockInsightVisibility"=> false,
-              "shippingChargesPayment"=> [
+              ]
+            ],
+            "shipDatestamp"=> "2020-07-03",
+            "serviceType"=> "INTERNATIONAL_PRIORITY",
+            "packagingType"=> "YOUR_PACKAGING",// tobemodified
+            "pickupType"=>  "USE_SCHEDULED_PICKUP",
+            "blockInsightVisibility"=> false,
+            "shippingChargesPayment"=> [
+              "paymentType"=> "SENDER"
+            ],
+            "labelSpecification"=> [
+              "imageType"=>  "PDF",
+              "labelStockType"=> "PAPER_85X11_TOP_HALF_LABEL"
+            ],
+            "customsClearanceDetail"=> [
+              "dutiesPayment"=> [
                 "paymentType"=> "SENDER"
               ],
-              "labelSpecification"=> [
-                "imageType"=> $imageType,
-                "labelStockType"=> $labelStockType
-              ],
-              "customsClearanceDetail"=> [
-                "dutiesPayment"=> [
-                  "paymentType"=> "SENDER"
-                ],
-                "isDocumentOnly"=> true,
-                "commodities"=> [
-                  [
-                    "description"=> "Commodity description",
-                    "countryOfManufacture"=> "US",
-                    "quantity"=> $customQty,
-                    "quantityUnits"=> "PCS",
-                    "unitPrice"=> [
-                      "amount"=> $totalNetCharge,
-                      "currency"=> "USD"
-                    ],
-                    "customsValue"=> [
-                      "amount"=> $customAmount,
-                      "currency"=> "USD"
-                    ],
-                    "weight"=> [
-                      "units"=> "LB",
-                      "value"=> $weight
-                    ]
-                  ]
-                ]
-              ],
-              "shippingDocumentSpecification"=> [
-                "shippingDocumentTypes"=> [
-                  "COMMERCIAL_INVOICE"
-                ],
-                "commercialInvoiceDetail"=> [
-                  "documentFormat"=> [
-                    "stockType"=> "PAPER_LETTER",
-                    "docType"=> "PDF" // fixed to PDF
-                  ]
-                ]
-              ],
-              "requestedPackageLineItems"=> [
+              "isDocumentOnly"=> true,
+              "commodities"=> [
                 [
+                  "description"=> "Commodity description",
+                  "countryOfManufacture"=> "US",
+                  "quantity"=>1,
+                  "quantityUnits"=> "PCS",
+                  "unitPrice"=> [
+                    "amount"=> 100,
+                    "currency"=> "USD"
+                  ],
+                  "customsValue"=> [
+                    "amount"=> 200,
+                    "currency"=> "USD"
+                  ],
                   "weight"=> [
                     "units"=> "LB",
-                    "value"=> 70
+                    "value"=> 20
                   ]
                 ]
               ]
             ],
-            "accountNumber"=> [
-              "value"=> "740561073"
+            "shippingDocumentSpecification"=> [
+              "shippingDocumentTypes"=> [
+                "COMMERCIAL_INVOICE"
+              ],
+              "commercialInvoiceDetail"=> [
+                "documentFormat"=> [
+                  "stockType"=> "PAPER_LETTER",
+                  "docType"=> "PDF" // fixed to PDF
+                ]
+              ]
+            ],
+            "requestedPackageLineItems"=> [
+              [
+                "weight"=> [
+                  "units"=> "LB",
+                  "value"=> 70
+                ]
+              ]
             ]
-            ];
+          ],
+          "accountNumber"=> [
+            "value"=> "740561073"
+          ]
+          ];
 
 
 
