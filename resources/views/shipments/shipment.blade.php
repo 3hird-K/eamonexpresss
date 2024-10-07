@@ -19,7 +19,7 @@
                 <h4>Shipper & Recipient Information</h4>
                 <small>Fill in the details of the shipper and recipient.</small>
                 <p><span class="fw-bold">{{ $serviceType }}</span></p>
-                <p>Total: <span class="fw-bold">$ {{ $totalNetCharge }}</span></p>
+                <p>Total: <span class="fw-bold">$ {{ session('totalNetCharge') }}</span></p>
             </div>
             <div class="card-body">
                 <div>

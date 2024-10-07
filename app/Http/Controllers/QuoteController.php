@@ -167,8 +167,9 @@ class QuoteController extends Controller
         'shipperstateOrProvinceCode' => session('shipperstateOrProvinceCode'),
     ];
 
-    // Pass the data to the view
+
     return view('shipments.shipment', $data);
+
 
     }
 
@@ -188,7 +189,7 @@ class QuoteController extends Controller
          $totalNetCharge = session('totalNetCharge');
 
 
-        //  dd($totalNetCharge);
+        //  dd($serviceType);
 
             // dd($fromZip, $toZip);
 
@@ -283,7 +284,24 @@ class QuoteController extends Controller
 
 
 
-                return view('shipments.createdShipment', compact('totalWithPackage'));
+                // return view('shipments.createdShipment', compact('totalWithPackage'));
+
+
+                $paymentData = [
+                    'payment_id' => session('payment_id'),
+                    'payer_id' => session('payer_id'),
+                    'payer_email' => session('payer_email'),
+                    'amount' => session('amount'),
+                    'currency' => session('currency'),
+                    'status' => session('status'),
+                ];
+
+
+                // dd($paymentData);
+
+                return view('paypal.success', [
+                    'payment' => $paymentData, // Pass payment data to the view
+                ]);
             }
 
 

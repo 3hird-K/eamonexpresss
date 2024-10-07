@@ -22,9 +22,13 @@ class PaymentController extends Controller
 
     public function processPayment(Request $request)
     {
-        // $amount = $request->input("amount");
+        // $amount = $request->input("totalNetCharge");
 
-        $amount = number_format($request->input("amount"), 2, '.', '');
+        $amount = number_format($request->input("totalNetCharge"), 2, '.', '');
+
+        session(['totalNetCharge' => $amount,
+                'serviceType' => $request->input('serviceType'),
+    ]);
 
         try {
             // Create a payment request
@@ -78,9 +82,42 @@ class PaymentController extends Controller
 
             $payment->save();
 
-            return view('paypal.success', [
-                'payment' => $payment, // Pass payment data to the view
+
+            session([
+                'payment_id' => $payment->payment_id,
+                'payer_id' => $payment->payer_id,
+                'payer_email' => $payment->payer_email,
+                'amount' => $payment->amount,
+                'currency' => $payment->currency,
+                'status' => $payment->status,
+
             ]);
+
+            // $pid = session("payment_id");
+            // dd($pid);
+
+
+            // return view('paypal.success', [
+            //     'payment' => $payment, // Pass payment data to the view
+            // ]);
+
+            $data = [
+                'fromCountry' => session('fromCountry'),
+                'toCountry' => session('toCountry'),
+                'weight' => session('weight'),
+                'serviceType' => session('serviceType'),
+                'totalNetCharge' => session('totalNetCharge'),
+                'recipientStreet' => session('recipientStreet'),
+                'recipientCity' => session('recipientCity'),
+                'recipientstateOrProvinceCode' => session('recipientstateOrProvinceCode'),
+                'shipperStreet' => session('shipperStreet'),
+                'shipperCity' => session('shipperCity'),
+                'shipperstateOrProvinceCode' => session('shipperstateOrProvinceCode'),
+            ];
+
+
+            return view('shipments.shipment', $data);
+
         } else {
             return redirect()->route('error')->with('error', $response->getMessage());
         }

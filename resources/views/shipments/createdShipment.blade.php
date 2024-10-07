@@ -18,7 +18,7 @@
                 <input type="hidden" name="amount" value="{{ $totalWithPackage }}">
                 <div class="d-flex justify-content-center align-items-center">
                     <button type="submit" class="btn btn-success btn-md mx-2">Pay Using Paypal</button>
-                
+
                 </div>
             </form>
 
