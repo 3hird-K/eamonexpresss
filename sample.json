@@ -1,187 +1,163 @@
 {
-    "meta": {
-        "code": 200
-    },
-    "addresses": [
-        {
-            "latitude": 10.781971,
-            "longitude": 106.693081,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [106.693081, 10.781971]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "county": "Quan 8",
-            "distance": 14473636,
-            "city": "Ho Chi Minh City",
-            "stateCode": "HC",
-            "state": "Ho Chi Minh",
-            "layer": "locality",
-            "formattedAddress": "Ho Chi Minh City, HC VNM",
-            "addressLabel": "Ho Chi Minh City"
-        },
-        {
-            "latitude": 16.932122,
-            "longitude": 121.387948,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [121.387948, 16.932122]
-            },
-            "country": "Philippines",
-            "countryCode": "PH",
-            "countryFlag": "🇵🇭",
-            "distance": 13503144,
-            "layer": "country",
-            "formattedAddress": "PHL",
-            "addressLabel": "Philippines"
-        },
-        {
-            "latitude": 38.795186,
-            "longitude": -76.974682,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-76.974682, 38.795186]
-            },
-            "country": "United States",
-            "countryCode": "US",
-            "countryFlag": "🇺🇸",
-            "county": "Prince George's County",
-            "distance": 52720,
-            "city": "Oxon Hill",
-            "neighborhood": "Phelps Corner",
-            "stateCode": "MD",
-            "state": "Maryland",
-            "layer": "neighborhood",
-            "formattedAddress": "Phelps Corner, Oxon Hill, MD USA",
-            "addressLabel": "Phelps Corner"
-        },
-        {
-            "latitude": 39.990821,
-            "longitude": -75.168428,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-75.168428, 39.990821]
-            },
-            "country": "United States",
-            "countryCode": "US",
-            "countryFlag": "🇺🇸",
-            "county": "Philadelphia County",
-            "distance": 225370,
-            "city": "Philadelphia",
-            "stateCode": "PA",
-            "state": "Pennsylvania",
-            "layer": "locality",
-            "formattedAddress": "Philadelphia, PA USA",
-            "addressLabel": "Philadelphia"
-        },
-        {
-            "latitude": 11.56245,
-            "longitude": 104.91601,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [104.91601, 11.56245]
-            },
-            "country": "Cambodia",
-            "countryCode": "KH",
-            "countryFlag": "🇰🇭",
-            "county": "Prampir Meakkara",
-            "distance": 14398166,
-            "city": "Phnom Penh",
-            "stateCode": "PP",
-            "state": "Phnum Penh",
-            "layer": "locality",
-            "formattedAddress": "Phnom Penh, PP KHM",
-            "addressLabel": "Phnom Penh"
-        },
-        {
-            "latitude": 20.795491,
-            "longitude": 106.640584,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [106.640584, 20.795491]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "distance": 13361979,
-            "stateCode": "HP",
-            "state": "Hai Phong",
-            "layer": "state",
-            "formattedAddress": "HP VNM",
-            "addressLabel": "Hai Phong"
-        },
-        {
-            "latitude": 28.7716,
-            "longitude": 78.33871,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [78.33871, 28.7716]
-            },
-            "country": "India",
-            "countryCode": "IN",
-            "countryFlag": "🇮🇳",
-            "county": "Amroha district",
-            "distance": 12081891,
-            "stateCode": "UP",
-            "state": "Uttar Pradesh",
-            "layer": "county",
-            "formattedAddress": "UP IND",
-            "addressLabel": "Amroha district"
-        },
-        {
-            "latitude": 33.60503,
-            "longitude": -112.070892,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-112.070892, 33.60503]
-            },
-            "country": "United States",
-            "countryCode": "US",
-            "countryFlag": "🇺🇸",
-            "county": "Maricopa County",
-            "distance": 3140392,
-            "city": "Phoenix",
-            "stateCode": "AZ",
-            "state": "Arizona",
-            "layer": "locality",
-            "formattedAddress": "Phoenix, AZ USA",
-            "addressLabel": "Phoenix"
-        },
-        {
-            "latitude": 21.322951,
-            "longitude": 105.121345,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [105.121345, 21.322951]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "distance": 13311655,
-            "stateCode": "PT",
-            "state": "Phu Tho",
-            "layer": "state",
-            "formattedAddress": "PT VNM",
-            "addressLabel": "Phu Tho"
-        },
-        {
-            "latitude": 10.11667,
-            "longitude": 105.5,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [105.5, 10.11667]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "distance": 14555874,
-            "stateCode": "CN",
-            "state": "Can Tho",
-            "layer": "state",
-            "formattedAddress": "CN VNM",
-            "addressLabel": "Can Tho"
-        }
-    ]
+    "transactionId": "APIF_SV_RATC_TxID04bcb031-8c86-4a2f-a7ff-051870aafabc",
+    "output": {
+        "transitTimes": [
+            {
+                "alerts": [
+                    {
+                        "code": "VIRTUAL.RESPONSE",
+                        "message": "This is a Virtual Response.",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "default.error",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "default.error",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "default.error",
+                        "alertType": "NOTE"
+                    },
+                    {
+                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
+                        "message": "default.error",
+                        "alertType": "NOTE"
+                    }
+                ],
+                "transitTimeDetails": [
+                    {
+                        "serviceType": "INTERNATIONAL_FIRST",
+                        "serviceName": "FedEx International First®",
+                        "commit": {
+                            "dateDetail": {
+                                "dayOfWeek": "Thu",
+                                "time": "09:00",
+                                "day": "Apr-20-2023"
+                            },
+                            "commodityName": "PARTS, MACHINE",
+                            "derivedDestinationDetail": {
+                                "countryCode": "FR",
+                                "stateOrProvinceCode": "75",
+                                "postalCode": "75001",
+                                "serviceArea": "A1",
+                                "locationId": "TNFA ",
+                                "locationNumber": 0,
+                                "airportId": "CDG"
+                            },
+                            "cutOffTime": "20:00:00",
+                            "accessTime": { "hours": 1, "minutes": 0 }
+                        },
+                        "customerMessages": [
+                            { "code": "134", "message": "REQUEST COMPLETED" }
+                        ]
+                    },
+                    {
+                        "serviceType": "FEDEX_INTERNATIONAL_PRIORITY_EXPRESS",
+                        "serviceName": "FedEx International Priority® Express",
+                        "commit": {
+                            "dateDetail": {
+                                "dayOfWeek": "Thu",
+                                "time": "12:00",
+                                "day": "Apr-20-2023"
+                            },
+                            "commodityName": "PARTS, MACHINE",
+                            "derivedDestinationDetail": {
+                                "countryCode": "FR",
+                                "stateOrProvinceCode": "75",
+                                "postalCode": "75001",
+                                "serviceArea": "A1",
+                                "locationId": "TNFA ",
+                                "locationNumber": 0,
+                                "airportId": "CDG"
+                            },
+                            "cutOffTime": "20:00:00",
+                            "accessTime": { "hours": 1, "minutes": 0 }
+                        },
+                        "customerMessages": [
+                            { "code": "134", "message": "REQUEST COMPLETED" }
+                        ]
+                    },
+                    {
+                        "serviceType": "FEDEX_INTERNATIONAL_PRIORITY",
+                        "serviceName": "FedEx International Priority®",
+                        "commit": {
+                            "dateDetail": {
+                                "dayOfWeek": "Thu",
+                                "time": "18:00",
+                                "day": "Apr-20-2023"
+                            },
+                            "commodityName": "PARTS, MACHINE",
+                            "derivedDestinationDetail": {
+                                "countryCode": "FR",
+                                "stateOrProvinceCode": "75",
+                                "postalCode": "75001",
+                                "serviceArea": "A1",
+                                "locationId": "TNFA ",
+                                "locationNumber": 0,
+                                "airportId": "CDG"
+                            },
+                            "cutOffTime": "20:00:00",
+                            "accessTime": { "hours": 1, "minutes": 0 }
+                        },
+                        "customerMessages": [
+                            { "code": "134", "message": "REQUEST COMPLETED" }
+                        ]
+                    },
+                    {
+                        "serviceType": "INTERNATIONAL_ECONOMY",
+                        "serviceName": "FedEx International Economy®",
+                        "commit": {
+                            "dateDetail": {
+                                "dayOfWeek": "Mon",
+                                "time": "18:00",
+                                "day": "Apr-24-2023"
+                            },
+                            "commodityName": "PARTS, MACHINE",
+                            "derivedDestinationDetail": {
+                                "countryCode": "FR",
+                                "stateOrProvinceCode": "75",
+                                "postalCode": "75001",
+                                "serviceArea": "A1",
+                                "locationId": "TNFA ",
+                                "locationNumber": 0,
+                                "airportId": "CDG"
+                            },
+                            "cutOffTime": "20:00:00",
+                            "accessTime": { "hours": 1, "minutes": 0 }
+                        },
+                        "customerMessages": [
+                            { "code": "134", "message": "REQUEST COMPLETED" }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "encoded": false
+    }
 }
