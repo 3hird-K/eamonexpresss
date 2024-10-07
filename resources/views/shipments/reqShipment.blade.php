@@ -18,7 +18,7 @@
                         <div class="card bg-light text-dark shadow">
 
 
-                        <form action="{{ route('shipPage') }}" method="POST">
+                        <form action="{{ route('payment') }}" method="POST">
 
                             @csrf
 

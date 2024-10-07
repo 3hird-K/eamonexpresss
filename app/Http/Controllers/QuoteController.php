@@ -84,7 +84,7 @@ class QuoteController extends Controller
                 $toZip,
                 $weight
             );
-            // dd($rates);
+            dd($rates);
 
 
         session([
@@ -101,6 +101,8 @@ class QuoteController extends Controller
 
 
             $error = json_decode($e->getMessage(),true);
+
+            dd($error);
 
             if (json_last_error() === JSON_ERROR_NONE && isset($error['errors'][0]['code'])) {
                 $jsonErr = $error['errors'][0]['code'];
@@ -165,8 +167,9 @@ class QuoteController extends Controller
         'shipperstateOrProvinceCode' => session('shipperstateOrProvinceCode'),
     ];
 
-    // Pass the data to the view
+
     return view('shipments.shipment', $data);
+
 
     }
 
@@ -187,6 +190,7 @@ class QuoteController extends Controller
 
 
         //  dd($totalNetCharge, $weight);
+        //  dd($serviceType);
 
             // dd($fromZip, $toZip);
 
@@ -208,8 +212,8 @@ class QuoteController extends Controller
                 'labelResponseOptions' => 'required|string',
                 'shipperstateOrProvinceCode' => 'required|string|max:2',
                 'recipientstateOrProvinceCode' => 'required|string|max:2',
-                'customsValueAmount' => 'required|numeric',
-                'customsValueQuantity' => 'required|numeric'
+                'customsValueAmount' => 'required',
+                'customsValueQuantity' => 'required'
             ]);
         //    dd($validatedData);
 
@@ -257,6 +261,7 @@ class QuoteController extends Controller
 
 
              dd($shipRequest);
+            // dd($shipRequest);
 
             $qty = $validatedData['customsValueQuantity'];
 
@@ -268,19 +273,37 @@ class QuoteController extends Controller
 
             $value = session('reqErrorResponse');
 
-                if($value =="test"){
-                    // dd("hello");
-                return redirect()->back()->withInput()->withErrors("Error");
+            if($value =="test"){
+            return redirect()->back()->withInput()->withErrors("Error");
 
-                }else{
-                    session([
-                        'trackingId' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][1]['trackingNumber'],
-                        'trackingUrl' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][1]['url'],
-                        'serviceTyped' => $shipRequest['output']['transactionShipments'][0]['serviceType'],
-                    ]);
+            }else{
+                session([
+                    'trackingId' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][0]['trackingNumber'],
+                    'trackingUrl' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][0]['url'],
+                    'serviceTyped' => $shipRequest['output']['transactionShipments'][0]['serviceType'],
+                ]);
 
-                    return view('shipments.createdShipment', compact('totalWithPackage'));
-                }
+
+
+                // return view('shipments.createdShipment', compact('totalWithPackage'));
+
+
+                $paymentData = [
+                    'payment_id' => session('payment_id'),
+                    'payer_id' => session('payer_id'),
+                    'payer_email' => session('payer_email'),
+                    'amount' => session('amount'),
+                    'currency' => session('currency'),
+                    'status' => session('status'),
+                ];
+
+
+                // dd($paymentData);
+
+                return view('paypal.success', [
+                    'payment' => $paymentData, // Pass payment data to the view
+                ]);
+            }
 
 
 
@@ -288,19 +311,12 @@ class QuoteController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Error fetching FedEx rates: ' . $e->getMessage());
-            return redirect()->back()->withInput()->withErrors('Invalid Credentials', dd($e->getMessage()));
+            dd($e->getMessage());
+            return redirect()->back()->withInput()->withErrors('Invalid Credentials',$e->getMessage() );
 
         }
 
     }
-
-
-    // public function pay(){
-    //     return view('sample');
-    // }
-
-
-
 
 
 

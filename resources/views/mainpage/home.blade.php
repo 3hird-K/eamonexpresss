@@ -74,12 +74,12 @@
 
                         <!-- From ZIP Code -->
                         <div class="mb-3">
-                            <label for="zipcodeFrom" class="form-label d-flex align-items-center justify-content-start">
+                            {{-- <label for="zipcodeFrom" class="form-label d-flex align-items-center justify-content-start">
                                 <i class="bi bi-envelope-fill me-2"></i> From Zip / Postal Code:
-                            </label>
+                            </label> --}}
 
 
-                            <input type="text" id="inputFromZip"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required style="background-color: #eeeeee;  ">
+                            <input type="hidden" id="inputFromZip"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required style="background-color: #eeeeee;  ">
                             {{-- <input type="text" id="inputFromZip"  name="zipcodeFrom" class="form-control" placeholder="Zip / Postal code" id="zipcodeFrom" required> --}}
 
                             <input type="hidden" class="form-control text-uppercase" id="shipperstateOrProvinceCode" name="shipperstateOrProvinceCode" placeholder="AR (Argentina)" required>
@@ -95,7 +95,7 @@
                         {{-- Complete Address --}}
                         <div class="mb-3">
                             <label for="recipientStreet">Recipient Postal Codes</label>
-                            <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="m1m1m1 - Enter your postal code here" value="{{ session('zipcodeTo') }}"  required>
+                            <input type="text" class="form-control" id="recipientStreet" name="recipientStreet" placeholder="m1m1m1 - Enter your postal code here" value="{{ old('zipcodeTo') }}"  required>
                         </div>
 
                         <!-- To Country -->
@@ -114,10 +114,10 @@
 
                         <!-- To ZIP Code -->
                         <div class="mb-3">
-                            <label for="zipcodeTo" class="form-label d-flex align-items-center justify-content-start">
+                            {{-- <label for="zipcodeTo" class="form-label d-flex align-items-center justify-content-start">
                                 <i class="bi bi-envelope-fill me-2"></i> To Zip / Postal Code:
-                            </label>
-                            <input type="text" id="inputToZip" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required style='background-color: #eeeeee;  '>
+                            </label> --}}
+                            <input type="hidden" id="inputToZip" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required style='background-color: #eeeeee;  '>
                             {{-- <input type="text" id="inputToZip" name="zipcodeTo" class="form-control" placeholder="Zip / Postal code" id="zipcodeTo" required> --}}
 
                             <input type="hidden" class="form-control text-uppercase" id="recipientstateOrProvinceCode" name="recipientstateOrProvinceCode" placeholder="ON (Ontario)" required value="{{ old('recipientstateOrProvinceCode') }}">
@@ -275,4 +275,4 @@
 @endsection
 
 @section('js_content', 'js/locateAddressWithPostal.js')
-@section('js_content2', 'js/validatePostal.js')
+{{-- @section('js_content2', 'js/validatePostal.js') --}}

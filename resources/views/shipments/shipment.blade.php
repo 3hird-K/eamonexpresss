@@ -19,7 +19,7 @@
                 <h4>Shipper & Recipient Information</h4>
                 <small>Fill in the details of the shipper and recipient.</small>
                 <p><span class="fw-bold">{{ $serviceType }}</span></p>
-                <p>Total: <span class="fw-bold">$ {{ $totalNetCharge }}</span></p>
+                <p>Total: <span class="fw-bold">$ {{ session('totalNetCharge') }}</span></p>
             </div>
             <div class="card-body">
                 <div>
@@ -220,22 +220,24 @@
         </div>
 
         <!-- Label Specification -->
-        <div class="card mb-4">
-            <div class="card-header">
+        {{-- <div class="card mb-4"> --}}
+            {{-- <div class="card-header">
                 <h4>Tell me more about your goods:</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body"> --}}
 
-            <div class="row">
-                <div class="col-md-6 input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">$</span>
-                    <input type="number" class="form-control" placeholder="Enter your estimated amount" name="customsValueAmount" required>
-                </div>
-                <div class="col-md-6 input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">qty.</span>
-                    <input type="number" placeholder="Item Qty." class="form-control" name="customsValueQuantity" maxlength="50" required>
-                </div>
-            </div>
+            {{-- <div class="row"> --}}
+                {{-- <div class="col-md-6 input-group mb-3"> --}}
+                    {{-- <span class="input-group-text" id="basic-addon1">$</span> --}}
+                    <input type="hidden" class="form-control" placeholder="Enter your estimated amount" name="customsValueAmount" value="200" required>
+
+                {{-- </div> --}}
+                {{-- <div class="col-md-6 input-group mb-3"> --}}
+                    {{-- <span class="input-group-text" id="basic-addon1">qty.</span> --}}
+                    <input type="hidden" value="1" class="form-control" name="customsValueQuantity" required>
+
+                {{-- </div> --}}
+            {{-- </div> --}}
 
 
 
@@ -284,8 +286,8 @@
                     <input type="hidden" name="labelStockType" value="PAPER_LETTER">
                     <input type="hidden" name="imageType" value="PDF">
                     <input type="hidden" name="labelResponseOptions" value="URL_ONLY">
-                </div>
-            </div>
+                {{-- </div> --}}
+            {{-- </div> --}}
             <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary btn-lg">Submit Shipment Request</button>
         </div>
