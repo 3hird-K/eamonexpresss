@@ -90,12 +90,14 @@ class FedExService
                 ],
                 "recipient" => [
                     "address" => [
-                        "postalCode" => $toZip,
+                        "postalCode" => "m1m1m1",
                         "countryCode" => $toCountry,
                     ]
                 ],
                 "shipDateStamp" => now()->toDateString(),
-                "pickupType" => "CONTACT_FEDEX_TO_SCHEDULE",
+                "pickupType"=> "DROPOFF_AT_FEDEX_LOCATION",
+                // "serviceType"=> "",
+                // "pickupType" => "CONTACT_FEDEX_TO_SCHEDULE",
                 // "pickupType" => ["DROPOFF_AT_FEDEX_LOCATION","CONTACT_FEDEX_TO_SCHEDULE","USE_SCHEDULED_PICKUP"],
                 "rateRequestType" => [
                     "LIST",

@@ -1,163 +1,249 @@
 {
-    "transactionId": "APIF_SV_RATC_TxID04bcb031-8c86-4a2f-a7ff-051870aafabc",
+    "transactionId": "APIF_SV_RATC_TxID37f7cc3b-67ee-43c5-b77c-1314ce3d1899",
     "output": {
-        "transitTimes": [
+        "alerts": [
             {
-                "alerts": [
-                    {
-                        "code": "VIRTUAL.RESPONSE",
-                        "message": "This is a Virtual Response.",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "SHIPPER.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "The origin state or province code has been changed. Please try again later or contact FedEx Customer Service.",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "default.error",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "default.error",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "default.error",
-                        "alertType": "NOTE"
-                    },
-                    {
-                        "code": "RECIPIENTS.ADDRESSSTATEORPROVINCECODE.INVALID",
-                        "message": "default.error",
-                        "alertType": "NOTE"
-                    }
-                ],
-                "transitTimeDetails": [
-                    {
-                        "serviceType": "INTERNATIONAL_FIRST",
-                        "serviceName": "FedEx International First®",
-                        "commit": {
-                            "dateDetail": {
-                                "dayOfWeek": "Thu",
-                                "time": "09:00",
-                                "day": "Apr-20-2023"
-                            },
-                            "commodityName": "PARTS, MACHINE",
-                            "derivedDestinationDetail": {
-                                "countryCode": "FR",
-                                "stateOrProvinceCode": "75",
-                                "postalCode": "75001",
-                                "serviceArea": "A1",
-                                "locationId": "TNFA ",
-                                "locationNumber": 0,
-                                "airportId": "CDG"
-                            },
-                            "cutOffTime": "20:00:00",
-                            "accessTime": { "hours": 1, "minutes": 0 }
-                        },
-                        "customerMessages": [
-                            { "code": "134", "message": "REQUEST COMPLETED" }
-                        ]
-                    },
-                    {
-                        "serviceType": "FEDEX_INTERNATIONAL_PRIORITY_EXPRESS",
-                        "serviceName": "FedEx International Priority® Express",
-                        "commit": {
-                            "dateDetail": {
-                                "dayOfWeek": "Thu",
-                                "time": "12:00",
-                                "day": "Apr-20-2023"
-                            },
-                            "commodityName": "PARTS, MACHINE",
-                            "derivedDestinationDetail": {
-                                "countryCode": "FR",
-                                "stateOrProvinceCode": "75",
-                                "postalCode": "75001",
-                                "serviceArea": "A1",
-                                "locationId": "TNFA ",
-                                "locationNumber": 0,
-                                "airportId": "CDG"
-                            },
-                            "cutOffTime": "20:00:00",
-                            "accessTime": { "hours": 1, "minutes": 0 }
-                        },
-                        "customerMessages": [
-                            { "code": "134", "message": "REQUEST COMPLETED" }
-                        ]
-                    },
-                    {
-                        "serviceType": "FEDEX_INTERNATIONAL_PRIORITY",
-                        "serviceName": "FedEx International Priority®",
-                        "commit": {
-                            "dateDetail": {
-                                "dayOfWeek": "Thu",
-                                "time": "18:00",
-                                "day": "Apr-20-2023"
-                            },
-                            "commodityName": "PARTS, MACHINE",
-                            "derivedDestinationDetail": {
-                                "countryCode": "FR",
-                                "stateOrProvinceCode": "75",
-                                "postalCode": "75001",
-                                "serviceArea": "A1",
-                                "locationId": "TNFA ",
-                                "locationNumber": 0,
-                                "airportId": "CDG"
-                            },
-                            "cutOffTime": "20:00:00",
-                            "accessTime": { "hours": 1, "minutes": 0 }
-                        },
-                        "customerMessages": [
-                            { "code": "134", "message": "REQUEST COMPLETED" }
-                        ]
-                    },
-                    {
-                        "serviceType": "INTERNATIONAL_ECONOMY",
-                        "serviceName": "FedEx International Economy®",
-                        "commit": {
-                            "dateDetail": {
-                                "dayOfWeek": "Mon",
-                                "time": "18:00",
-                                "day": "Apr-24-2023"
-                            },
-                            "commodityName": "PARTS, MACHINE",
-                            "derivedDestinationDetail": {
-                                "countryCode": "FR",
-                                "stateOrProvinceCode": "75",
-                                "postalCode": "75001",
-                                "serviceArea": "A1",
-                                "locationId": "TNFA ",
-                                "locationNumber": 0,
-                                "airportId": "CDG"
-                            },
-                            "cutOffTime": "20:00:00",
-                            "accessTime": { "hours": 1, "minutes": 0 }
-                        },
-                        "customerMessages": [
-                            { "code": "134", "message": "REQUEST COMPLETED" }
-                        ]
-                    }
-                ]
+                "code": "VIRTUAL.RESPONSE",
+                "message": "This is a Virtual Response.",
+                "alertType": "NOTE"
+            },
+            {
+                "code": "ORIGIN.STATEORPROVINCECODE.CHANGED",
+                "message": "The origin state/province code has been changed.",
+                "alertType": "NOTE"
+            },
+            {
+                "code": "DESTINATION.STATEORPROVINCECODE.CHANGED",
+                "message": "The destination state/province code has been changed.",
+                "alertType": "NOTE"
+            },
+            {
+                "code": "MONEYBACKGUARANTEE.NOT.ELIGIBLE",
+                "message": "default.error",
+                "alertType": "NOTE"
             }
         ],
+        "rateReplyDetails": [
+            {
+                "serviceType": "",
+                "serviceName": "FedEx International GroundÂ®",
+                "packagingType": "YOUR_PACKAGING",
+                "customerMessages": [
+                    {
+                        "code": "TRANSIT.CEFIMPORT.FEE",
+                        "message": "The payor of duties/taxes/fees will be responsible for any applicable Clearance Entry Fees and other import fees."
+                    }
+                ],
+                "ratedShipmentDetails": [
+                    {
+                        "rateType": "ACCOUNT",
+                        "ratedWeightMethod": "ACTUAL",
+                        "totalDiscounts": 0.0,
+                        "totalBaseCharge": 87.42,
+                        "totalNetCharge": 92.45,
+                        "totalVatCharge": 0.0,
+                        "totalNetFedExCharge": 92.45,
+                        "totalDutiesAndTaxes": 0.0,
+                        "totalNetChargeWithDutiesAndTaxes": 125.05,
+                        "ancillaryFeesAndTaxes": [
+                            {
+                                "type": "CLEARANCE_ENTRY_FEE",
+                                "description": "Clearance Entry Fee",
+                                "amount": 28.85
+                            },
+                            {
+                                "type": "HARMONIZED_SALES_TAX",
+                                "description": "Harmonized Sales Tax",
+                                "amount": 3.75
+                            }
+                        ],
+                        "totalDutiesTaxesAndFees": 32.6,
+                        "totalAncillaryFeesAndTaxes": 32.6,
+                        "shipmentRateDetail": {
+                            "rateZone": "51",
+                            "dimDivisor": 0,
+                            "fuelSurchargePercent": 5.75,
+                            "totalSurcharges": 5.03,
+                            "totalFreightDiscount": 0.0,
+                            "surCharges": [
+                                {
+                                    "type": "FUEL",
+                                    "description": "Fuel Surcharge",
+                                    "level": "PACKAGE",
+                                    "amount": 5.03
+                                }
+                            ],
+                            "totalBillingWeight": {
+                                "units": "LB",
+                                "value": 45.0
+                            },
+                            "currency": "USD"
+                        },
+                        "ratedPackages": [
+                            {
+                                "groupNumber": 0,
+                                "effectiveNetDiscount": 0.0,
+                                "packageRateDetail": {
+                                    "rateType": "PAYOR_ACCOUNT_PACKAGE",
+                                    "ratedWeightMethod": "ACTUAL",
+                                    "baseCharge": 87.42,
+                                    "netFreight": 87.42,
+                                    "totalSurcharges": 5.03,
+                                    "netFedExCharge": 92.45,
+                                    "totalTaxes": 0.0,
+                                    "netCharge": 92.45,
+                                    "totalRebates": 0.0,
+                                    "billingWeight": {
+                                        "units": "KG",
+                                        "value": 20.41
+                                    },
+                                    "totalFreightDiscounts": 0.0,
+                                    "surcharges": [
+                                        {
+                                            "type": "FUEL",
+                                            "description": "Fuel Surcharge",
+                                            "level": "PACKAGE",
+                                            "amount": 5.03
+                                        }
+                                    ],
+                                    "currency": "USD"
+                                }
+                            }
+                        ],
+                        "currency": "USD"
+                    },
+                    {
+                        "rateType": "LIST",
+                        "ratedWeightMethod": "ACTUAL",
+                        "totalDiscounts": 0.0,
+                        "totalBaseCharge": 87.42,
+                        "totalNetCharge": 92.45,
+                        "totalVatCharge": 0.0,
+                        "totalNetFedExCharge": 92.45,
+                        "totalDutiesAndTaxes": 0.0,
+                        "totalNetChargeWithDutiesAndTaxes": 125.05,
+                        "ancillaryFeesAndTaxes": [
+                            {
+                                "type": "CLEARANCE_ENTRY_FEE",
+                                "description": "Clearance Entry Fee",
+                                "amount": 28.85
+                            },
+                            {
+                                "type": "HARMONIZED_SALES_TAX",
+                                "description": "Harmonized Sales Tax",
+                                "amount": 3.75
+                            }
+                        ],
+                        "totalDutiesTaxesAndFees": 32.6,
+                        "totalAncillaryFeesAndTaxes": 32.6,
+                        "shipmentRateDetail": {
+                            "rateZone": "51",
+                            "dimDivisor": 0,
+                            "fuelSurchargePercent": 5.75,
+                            "totalSurcharges": 5.03,
+                            "totalFreightDiscount": 0.0,
+                            "surCharges": [
+                                {
+                                    "type": "FUEL",
+                                    "description": "Fuel Surcharge",
+                                    "level": "PACKAGE",
+                                    "amount": 5.03
+                                }
+                            ],
+                            "totalBillingWeight": {
+                                "units": "LB",
+                                "value": 45.0
+                            },
+                            "currency": "USD"
+                        },
+                        "ratedPackages": [
+                            {
+                                "groupNumber": 0,
+                                "effectiveNetDiscount": 0.0,
+                                "packageRateDetail": {
+                                    "rateType": "PAYOR_LIST_PACKAGE",
+                                    "ratedWeightMethod": "ACTUAL",
+                                    "baseCharge": 87.42,
+                                    "netFreight": 87.42,
+                                    "totalSurcharges": 5.03,
+                                    "netFedExCharge": 92.45,
+                                    "totalTaxes": 0.0,
+                                    "netCharge": 92.45,
+                                    "totalRebates": 0.0,
+                                    "billingWeight": {
+                                        "units": "KG",
+                                        "value": 20.41
+                                    },
+                                    "totalFreightDiscounts": 0.0,
+                                    "surcharges": [
+                                        {
+                                            "type": "FUEL",
+                                            "description": "Fuel Surcharge",
+                                            "level": "PACKAGE",
+                                            "amount": 5.03
+                                        }
+                                    ],
+                                    "currency": "USD"
+                                }
+                            }
+                        ],
+                        "currency": "USD"
+                    }
+                ],
+                "operationalDetail": {
+                    "ineligibleForMoneyBackGuarantee": true,
+                    "astraDescription": "FXG",
+                    "airportId": "YYZ",
+                    "serviceCode": "92"
+                },
+                "signatureOptionType": "SERVICE_DEFAULT",
+                "serviceDescription": {
+                    "serviceId": "EP1000000135",
+                    "serviceType": "",
+                    "code": "92",
+                    "names": [
+                        {
+                            "type": "long",
+                            "encoding": "utf-8",
+                            "value": "FedEx International GroundÂ®"
+                        },
+                        {
+                            "type": "long",
+                            "encoding": "ascii",
+                            "value": "FedEx International Ground"
+                        },
+                        {
+                            "type": "medium",
+                            "encoding": "utf-8",
+                            "value": "International GroundÂ®"
+                        },
+                        {
+                            "type": "medium",
+                            "encoding": "ascii",
+                            "value": "International Ground"
+                        },
+                        {
+                            "type": "short",
+                            "encoding": "utf-8",
+                            "value": "IG"
+                        },
+                        {
+                            "type": "short",
+                            "encoding": "ascii",
+                            "value": "IG"
+                        },
+                        {
+                            "type": "abbrv",
+                            "encoding": "ascii",
+                            "value": "SG"
+                        }
+                    ],
+                    "description": "FedEx Ground",
+                    "astraDescription": "FXG"
+                }
+            }
+        ],
+        "quoteDate": "2023-04-17",
         "encoded": false
     }
 }

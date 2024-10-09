@@ -40,6 +40,8 @@ class QuoteController extends Controller
         $toZip = $request->input('zipcodeTo');
         $weight = $request->input('weight'); // Weight input from form
 
+        // dd($fromCountry, $toCountry, $fromZip, $toZip, $weight);
+
         // Inputs to be passed on shipment view
         $recipientStreet = $request->input('recipientStreet');
         $recipientCity = $request->input('recipientCity');
@@ -84,7 +86,7 @@ class QuoteController extends Controller
                 $toZip,
                 $weight
             );
-            dd($rates);
+            // dd($rates);
 
 
         session([
@@ -260,7 +262,7 @@ class QuoteController extends Controller
             );
 
 
-             dd($shipRequest);
+            //  dd($shipRequest);
             // dd($shipRequest);
 
             $qty = $validatedData['customsValueQuantity'];
