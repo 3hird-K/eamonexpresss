@@ -199,41 +199,41 @@ class FedExService
         $bookingData = [
             "labelResponseOptions"=> $labelResponseOptions,
             "requestedShipment"=> [
-              "shipper"=> [
-                "contact"=> [
-                  "personName"=> $shipperName,
-                  "phoneNumber"=> $shipperPhone,
-                //   "companyName"=> "Shipper Company Name"
-                ],
-                "address"=> [
-                  "streetLines"=> [
-                    $shipperStreet
-                  ],
-                  "city"=> $shipperCity,
-                  "stateOrProvinceCode"=> $shipperstateOrProvinceCode,
-                  "postalCode"=> $fromZip,
-                  "countryCode"=> $shipperCountryCode
-                ]
-              ],
-              "recipients"=> [
-                [
-                  "contact"=> [
-                    "personName"=> $recipientName,
-                    "phoneNumber"=> $recipientPhone,
-                    // "companyName"=> "Recipient Company Name"
-                  ],
-                  "address"=> [
-                    "streetLines"=> [
-                      $recipientStreet,
+                "shipper"=> [
+                    "contact"=> [
+                        "personName"=> $shipperName,
+                        "phoneNumber"=> $shipperPhone,
+                        "companyName"=> ""
                     ],
-                    "city"=> $recipientCity,
-                    "stateOrProvinceCode"=> $recipientstateOrProvinceCode,
-                    "postalCode"=> $toZip,
-                    "countryCode"=> $recipientCountryCode
-                  ]
-                ]
-              ],
-              "shipDatestamp"=> $shipDate,
+                    "address"=> [
+                        "streetLines"=> [$shipperStreet],
+                        "city"=> $shipperCity,
+                        "stateOrProvinceCode"=> $shipperstateOrProvinceCode,
+                        "postalCode"=> $fromZip,
+                        "countryCode"=> $shipperCountryCode
+                    ]
+                ],
+                "recipients"=> [
+                    [
+                        "contact"=> [
+                            "personName"=> $recipientName,
+                            "phoneNumber"=> $recipientPhone,
+                            "companyName"=> ""
+                        ],
+                        "address"=> [
+                            "streetLines"=> [
+                                $recipientStreet,
+                                "",
+                                ""
+                            ],
+                            "city"=> $recipientCity,
+                            "stateOrProvinceCode"=> $recipientstateOrProvinceCode,
+                            "postalCode"=> $toZip,
+                            "countryCode"=> $recipientCountryCode
+                        ]
+                    ]
+                ],
+                "shipDatestamp"=> $shipDate,
               "serviceType"=> $serviceType,
               "packagingType"=> $packagingType, // tobemodified
               "pickupType"=> $pickupType,
@@ -292,7 +292,7 @@ class FedExService
               ]
             ],
             "accountNumber"=> [
-              "value"=> "740561073"
+              "value"=> $this->accountNumber,
             ]
             ];
 
@@ -397,10 +397,6 @@ class FedExService
         //     "value"=> "740561073"
         //   ]
         //   ];
-
-
-
-
 
 
 
