@@ -1,187 +1,97 @@
-{
-    "meta": {
-        "code": 200
-    },
-    "addresses": [
-        {
-            "latitude": 10.781971,
-            "longitude": 106.693081,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [106.693081, 10.781971]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "county": "Quan 8",
-            "distance": 14473636,
-            "city": "Ho Chi Minh City",
-            "stateCode": "HC",
-            "state": "Ho Chi Minh",
-            "layer": "locality",
-            "formattedAddress": "Ho Chi Minh City, HC VNM",
-            "addressLabel": "Ho Chi Minh City"
-        },
-        {
-            "latitude": 16.932122,
-            "longitude": 121.387948,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [121.387948, 16.932122]
-            },
-            "country": "Philippines",
-            "countryCode": "PH",
-            "countryFlag": "🇵🇭",
-            "distance": 13503144,
-            "layer": "country",
-            "formattedAddress": "PHL",
-            "addressLabel": "Philippines"
-        },
-        {
-            "latitude": 38.795186,
-            "longitude": -76.974682,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-76.974682, 38.795186]
-            },
-            "country": "United States",
-            "countryCode": "US",
-            "countryFlag": "🇺🇸",
-            "county": "Prince George's County",
-            "distance": 52720,
-            "city": "Oxon Hill",
-            "neighborhood": "Phelps Corner",
-            "stateCode": "MD",
-            "state": "Maryland",
-            "layer": "neighborhood",
-            "formattedAddress": "Phelps Corner, Oxon Hill, MD USA",
-            "addressLabel": "Phelps Corner"
-        },
-        {
-            "latitude": 39.990821,
-            "longitude": -75.168428,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-75.168428, 39.990821]
-            },
-            "country": "United States",
-            "countryCode": "US",
-            "countryFlag": "🇺🇸",
-            "county": "Philadelphia County",
-            "distance": 225370,
-            "city": "Philadelphia",
-            "stateCode": "PA",
-            "state": "Pennsylvania",
-            "layer": "locality",
-            "formattedAddress": "Philadelphia, PA USA",
-            "addressLabel": "Philadelphia"
-        },
-        {
-            "latitude": 11.56245,
-            "longitude": 104.91601,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [104.91601, 11.56245]
-            },
-            "country": "Cambodia",
-            "countryCode": "KH",
-            "countryFlag": "🇰🇭",
-            "county": "Prampir Meakkara",
-            "distance": 14398166,
-            "city": "Phnom Penh",
-            "stateCode": "PP",
-            "state": "Phnum Penh",
-            "layer": "locality",
-            "formattedAddress": "Phnom Penh, PP KHM",
-            "addressLabel": "Phnom Penh"
-        },
-        {
-            "latitude": 20.795491,
-            "longitude": 106.640584,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [106.640584, 20.795491]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "distance": 13361979,
-            "stateCode": "HP",
-            "state": "Hai Phong",
-            "layer": "state",
-            "formattedAddress": "HP VNM",
-            "addressLabel": "Hai Phong"
-        },
-        {
-            "latitude": 28.7716,
-            "longitude": 78.33871,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [78.33871, 28.7716]
-            },
-            "country": "India",
-            "countryCode": "IN",
-            "countryFlag": "🇮🇳",
-            "county": "Amroha district",
-            "distance": 12081891,
-            "stateCode": "UP",
-            "state": "Uttar Pradesh",
-            "layer": "county",
-            "formattedAddress": "UP IND",
-            "addressLabel": "Amroha district"
-        },
-        {
-            "latitude": 33.60503,
-            "longitude": -112.070892,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-112.070892, 33.60503]
-            },
-            "country": "United States",
-            "countryCode": "US",
-            "countryFlag": "🇺🇸",
-            "county": "Maricopa County",
-            "distance": 3140392,
-            "city": "Phoenix",
-            "stateCode": "AZ",
-            "state": "Arizona",
-            "layer": "locality",
-            "formattedAddress": "Phoenix, AZ USA",
-            "addressLabel": "Phoenix"
-        },
-        {
-            "latitude": 21.322951,
-            "longitude": 105.121345,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [105.121345, 21.322951]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "distance": 13311655,
-            "stateCode": "PT",
-            "state": "Phu Tho",
-            "layer": "state",
-            "formattedAddress": "PT VNM",
-            "addressLabel": "Phu Tho"
-        },
-        {
-            "latitude": 10.11667,
-            "longitude": 105.5,
-            "geometry": {
-                "type": "Point",
-                "coordinates": [105.5, 10.11667]
-            },
-            "country": "Vietnam",
-            "countryCode": "VN",
-            "countryFlag": "🇻🇳",
-            "distance": 14555874,
-            "stateCode": "CN",
-            "state": "Can Tho",
-            "layer": "state",
-            "formattedAddress": "CN VNM",
-            "addressLabel": "Can Tho"
-        }
+[
+    "labelResponseOptions"=> "URL_ONLY",
+    "requestedShipment"=> [
+        "shipper"=> [
+            "contact"=> [
+                "personName"=> "SHIPPER NAME",
+                "phoneNumber"=> 1234567890,
+                "companyName"=> "Shipper Company Name"
+            ],
+            "address"=> [
+                "streetLines"=> ["SHIPPER STREET LINE 1"],
+                "city"=> "Memphis",
+                "stateOrProvinceCode"=> "TN",
+                "postalCode"=> 38116,
+                "countryCode"=> "US"
+            ]
+        ],
+        "recipients"=> [
+            [
+                "contact"=> [
+                    "personName"=> "RECIPIENT NAME",
+                    "phoneNumber"=> 1234567890,
+                    "companyName"=> "Recipient Company Name"
+                ],
+                "address"=> [
+                    "streetLines"=> [
+                        "RECIPIENT STREET LINE 1",
+                        "RECIPIENT STREET LINE 2",
+                        "RECIPIENT STREET LINE 3"
+                    ],
+                    "city"=> "RICHMOND",
+                    "stateOrProvinceCode"=> "BC",
+                    "postalCode"=> "V7C4V7",
+                    "countryCode"=> "CA"
+                ]
+            ]
+        ],
+        "shipDatestamp"=> "2020-07-03",
+        "serviceType"=> "INTERNATIONAL_PRIORITY",
+        "packagingType"=> "YOUR_PACKAGING",
+        "pickupType"=> "USE_SCHEDULED_PICKUP",
+        "blockInsightVisibility"=> false,
+        "shippingChargesPayment"=> [
+            "paymentType"=> "SENDER"
+        ],
+        "labelSpecification"=> [
+            "imageType"=> "PDF",
+            "labelStockType"=> "PAPER_85X11_TOP_HALF_LABEL"
+        ],
+        "customsClearanceDetail"=> [
+            "dutiesPayment"=> [
+                "paymentType"=> "SENDER"
+            ],
+            "isDocumentOnly"=> true,
+            "commodities"=> [
+                [
+                    "description"=> "Commodity description",
+                    "countryOfManufacture"=> "US",
+                    "quantity"=> 1,
+                    "quantityUnits"=> "PCS",
+                    "unitPrice"=> [
+                        "amount"=> 100,
+                        "currency"=> "USD"
+                    ],
+                    "customsValue"=> [
+                        "amount"=> 100,
+                        "currency"=> "USD"
+                    ],
+                    "weight"=> [
+                        "units"=> "LB",
+                        "value"=> 20
+                    ]
+                ]
+            ]
+        ],
+        "shippingDocumentSpecification"=> [
+            "shippingDocumentTypes"=> ["COMMERCIAL_INVOICE"],
+            "commercialInvoiceDetail"=> [
+                "documentFormat"=> [
+                    "stockType"=> "PAPER_LETTER",
+                    "docType"=> "PDF"
+                ]
+            ]
+        ],
+        "requestedPackageLineItems"=> [
+            [
+                "weight"=> [
+                    "units"=> "LB",
+                    "value"=> 70
+                ]
+            ]
+        ]
+    ],
+    "accountNumber"=> [
+        "value"=> "XXX561073"
     ]
-}
+]

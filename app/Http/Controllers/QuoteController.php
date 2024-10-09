@@ -191,7 +191,7 @@ class QuoteController extends Controller
 
         //  dd($serviceType);
 
-            // dd($fromZip, $toZip);
+            // dd($fromZip, $toZip, $shipperCountryCode, $recipientCountryCode, $inWeight, $serviceType, $totalNetCharge);
 
             // Validate request data
             $validatedData = $request->validate([
@@ -246,7 +246,7 @@ class QuoteController extends Controller
                 $validatedData['imageType'],
                 $validatedData['labelStockType'],
                 $validatedData['labelResponseOptions'],
-                $weight,
+                $inWeight,
                 $serviceType,
                 $fromZip,
                 $toZip,
@@ -264,7 +264,7 @@ class QuoteController extends Controller
 
             $qty = $validatedData['customsValueQuantity'];
 
-            $totalWithPackage = strval($totalNetCharge * $qty);
+            // $totalWithPackage = strval($totalNetCharge * $qty);
             // dd($totalWithPackage);
 
 
@@ -277,8 +277,8 @@ class QuoteController extends Controller
 
             }else{
                 session([
-                    'trackingId' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][0]['trackingNumber'],
-                    'trackingUrl' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][0]['url'],
+                    'trackingId' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][1]['trackingNumber'],
+                    'trackingUrl' => $shipRequest['output']['transactionShipments'][0]['shipmentDocuments'][1]['url'],
                     'serviceTyped' => $shipRequest['output']['transactionShipments'][0]['serviceType'],
                 ]);
 
